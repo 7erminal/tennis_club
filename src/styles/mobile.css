@@ -1,0 +1,26 @@
+body, #root{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    /* background-color: rebeccapurple; */
+}
+
+/* Login page */
+.loginDiv{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    /* background-color: aqua; */
+}
+
+.loginImageDiv{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    right: 0;
+}
+
+.loginImage{
+    width: 100%;
+}
