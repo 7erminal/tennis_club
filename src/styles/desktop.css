@@ -21,8 +21,8 @@
         background-image: url('../../public/Tennis-Wallpaper.jpg');
         background-position: center;
         background-size: cover;
-        filter: blur(2px);
-        backdrop-filter: opacity(.5);
+        /* filter: blur(2px); */
+        filter: brightness(80%);
         z-index: 1;
     }
 

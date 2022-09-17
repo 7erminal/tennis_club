@@ -34,19 +34,22 @@ const LoginPage: React.FC = () => {
     return (
         <div className='loginDiv'>
             <div className='loginFormDiv centerDiv'>
-                <div style={{justifyContent: 'center', display: 'flex'}}>
+                <div style={{justifyContent: 'center', display: 'flex', fontFamily: 'Copperplate'}}>
                     <Container>
                         <Row>
-                            <Col lg={6} md={6}><h1 style={{float:'right'}}>Tennis</h1></Col>
-                            <Col lg={6} md={6}></Col>
+                            <Col lg={6} md={6} xs={12} sm={12}><h1 style={{float:'right'}}>Tennis</h1></Col>
+                            <Col lg={6} md={6} xs={12} sm={12}></Col>
                         </Row>
                         <Row>
-                            <Col lg={6} md={6}></Col>
-                            <Col lg={6} md={6}><h1>Club</h1></Col>
+                            <Col lg={6} md={6} xs={12} sm={12}></Col>
+                            <Col lg={6} md={6} xs={12} sm={12}><h1>Club</h1></Col>
                         </Row>
                     </Container>
                 </div>
                 <Card className='loginCard'>
+                    <Row style={{display: 'flex', justifyContent: 'center', textAlign: 'center', paddingTop: '10px', paddingBottom: '5px'}}>
+                        <span>Login</span>
+                    </Row>
                     <Form>
                         <Form.Group className="mb-3" controlId="formBasicUsername">
                             <Form.Label>Username</Form.Label>
@@ -59,9 +62,14 @@ const LoginPage: React.FC = () => {
                             {/* <Form.Control type="password" placeholder="Password" /> */}
                             <input type='password' onChange={(e)=>setPassword(e.target.value)} className="loginTextBox" value={password}/>
                         </Form.Group>
+
+                        <Row style={{paddingTop: '5px', paddingBottom: '5px'}}>
+                            <small>Forgot password?</small>
+                        </Row>
                         {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
                             <Form.Check type="checkbox" label="Check me out" />
                         </Form.Group> */}
+
                         {
                             showError_ ?
                             <div style={{paddingTop: '6px', paddingBottom: '5px'}}>
