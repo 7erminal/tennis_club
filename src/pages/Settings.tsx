@@ -1,18 +1,18 @@
 import React from 'react'
-import DashboardBody from '../widgets/DashboardBody'
+import SettingsBody from '../widgets/SettingsBody'
 import Sidebar from '../widgets/SideBar'
 
 type Props = {
     regDetails: ()=>void
   }
 
-const DashboardPage: React.FC<Props> = ({regDetails}) => {
+const SettingsPage: React.FC<Props> = ({regDetails}) => {
     return (
         <div className='wrapper'>
             <Sidebar />
-            <DashboardBody regDetails={regDetails} />
+            <SettingsBody regDetails={regDetails} />
         </div>
     )
 }
 
-export default DashboardPage
+export default SettingsPage

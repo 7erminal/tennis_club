@@ -47,3 +47,21 @@ body, #root{
     border: none;
     border-bottom: 1px solid rgb(73, 72, 72);
 }
+
+.settings-tab{
+    padding-top: 150px;
+}
+
+.add-member-button-pane{
+    background-color: white;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.add-member-button{
+    text-decoration: none;
+}
+
+.add-member-button:hover{
+    cursor: pointer;
+}

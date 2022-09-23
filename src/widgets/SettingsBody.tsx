@@ -7,19 +7,21 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import { Link } from "react-router-dom"
 import Navbar_ from './NavBar';
-import DashboardContent from './DashboardContent';
+import SettingsContent from './SettingsContent';
+import SettingsTab from './SettingsTab';
 
 type Props = {
     regDetails: ()=>void
   }
 
-const DashboardBody: React.FC<Props> = ({regDetails}) => {
+const SettingsBody: React.FC<Props> = ({regDetails}) => {
     return (
         <div className="main-panel">
-            <Navbar_ regDetails={regDetails} />
-            <DashboardContent />
+            <Navbar_ regDetails={regDetails}/>
+            <SettingsTab />
+            {/* <SettingsContent /> */}
             </div>
     )
 }
 
-export default DashboardBody
+export default SettingsBody

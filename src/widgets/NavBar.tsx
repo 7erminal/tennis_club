@@ -2,7 +2,11 @@ import React from 'react'
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom'
 
-const Navbar_: React.FC = () => {
+type Props = {
+  regDetails: ()=>void
+}
+
+const Navbar_: React.FC<Props> = ({regDetails}) => {
     const navDropdownTitle = (<i className='nc-icon nc-bell-55'></i>);
 
     return (
@@ -57,12 +61,12 @@ const Navbar_: React.FC = () => {
             </NavDropdown>
               </li>
               <li className="nav-item">
-                <a className="nav-link btn-rotate" href="javascript:;">
+                <Link to="/settings" onClick={regDetails} className="nav-link btn-rotate">
                   <i className="nc-icon nc-settings-gear-65"></i>
                   <p>
                     <span className="d-lg-none d-md-block">Account</span>
                   </p>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

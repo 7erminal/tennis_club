@@ -12,72 +12,65 @@ import Navbar_ from './NavBar';
 
 const DashboardContent: React.FC = () => {
     return (
-        <div className="contentCustom">
-            <div className='dashboardPic'></div>
-            <div className='dashboardContentDiv'>
-                <div className='dashboardTableContent'>
-                    <Table striped bordered hover>
-                        <thead>
-                            <tr>
-                            <th>#</th>
-                            <th>Account Number</th>
-                            <th>Member Number</th>
-                            <th>Name (First and Last Name)</th>
-                            <th>Plan</th>
-                            <th>Account Status</th>
-                            <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>123456</td>
-                                <td>123435</td>
-                                <td>Thomas</td>
-                                <td>Couple</td>
-                                <td>Active</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>123456</td>
-                                <td>123435</td>
-                                <td>Thomas</td>
-                                <td>Couple</td>
-                                <td>Active</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>123456</td>
-                                <td>123435</td>
-                                <td>Thomas</td>
-                                <td>Couple</td>
-                                <td>Active</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>123456</td>
-                                <td>123435</td>
-                                <td>Thomas</td>
-                                <td>Couple</td>
-                                <td>Active</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>123456</td>
-                                <td>123435</td>
-                                <td>Thomas</td>
-                                <td>Couple</td>
-                                <td>Active</td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </Table>
-                </div>
-            </div>
+        <div className="DashboardContentCustom">
+            <Container fluid className='dashboardContentDiv'>
+                <Row>
+                    <Col xs md={4} className="mt-4">
+                        <div className='dashboardInfoBlock'>
+                            <span>Total Members</span>
+                            <div className="centerDiv"><h1>0</h1></div>
+                        </div>
+                    </Col>
+                    <Col xs md={4} className="mt-4">
+                        <div className='dashboardInfoBlock'>
+                            <span>Total Active Members</span>
+                            <div className="centerDiv"><h1>0</h1></div>
+                        </div>
+                    </Col>
+                    <Col xs md={4} className="mt-4">
+                        <div className='dashboardInfoBlock'>
+                            <span>Total Inactive Members</span>
+                            <div className="centerDiv"><h1>0</h1></div>
+                        </div>
+                    </Col>
+                    <Col xs md={4} className="mt-4">
+                        <div className='dashboardInfoBlock'>
+                            <span>Total Sales (Month)</span>
+                            <div className="centerDiv"><h1>0</h1></div>
+                        </div>
+                    </Col>
+                    <Col xs md={4} className="mt-4">
+                        <div className='dashboardInfoBlock'>
+                            <span>Total Payments (Month)</span>
+                            <div className="centerDiv"><h1>0</h1></div>
+                        </div>
+                    </Col>
+                </Row>
+
+                
+            </Container>
+            <Container fluid>
+                <Row>
+                    <Col xs md={4} className="mt-4">
+                        <div className='dashboardInfoBlock'>
+                            <span>No. of Scheduled Matches</span>
+                            <div className="centerDiv"><h1>0</h1></div>
+                        </div>
+                    </Col>
+                    <Col xs md={4} className="mt-4">
+                        <div className='dashboardInfoBlock'>
+                            <span>No. of Scheduled Training</span>
+                            <div className="centerDiv"><h1>0</h1></div>
+                        </div>
+                    </Col>
+                    <Col xs md={4} className="mt-4">
+                        <div className='dashboardInfoBlock'>
+                            <span>No. of Scheduled Coaching</span>
+                            <div className="centerDiv"><h1>0</h1></div>
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
         </div>
     )
 }

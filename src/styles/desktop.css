@@ -63,12 +63,31 @@
         background-color: white;
     }
 
+    .DashboardContentCustom{
+        position: relative;
+        width: 100%;
+        background-color: white;
+    }
+
     .dashboardContentDiv{
         position: relative;
         width: 100%;
         justify-content: center;
         display: flex;
+        padding-top: 150px;
     }
+
+
+    .dashboardInfoBlock{
+        width: 380px;
+        height: 200px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        position: relative;
+        justify-content: center;
+        text-align: center;
+        padding-top: 15px;
+    }
+
 
     .dashboardPic{
         position: relative;
@@ -87,5 +106,41 @@
         bottom: 55px;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     }
+
+    .membersContentDiv{
+        position: relative;
+        width: 100%;
+        justify-content: center;
+        display: flex;
+    }
+
+    .settings-tab{
+        position: relative;
+        width: 100%;
+        background-color: white;
+    }
+
+    .formContentDiv{
+        position: relative;
+        width: 100%;
+        background-color: white;
+        /* background-image: url('../../public/silhouette-man-with-tennis-racket-isolated-white-background_201926-1249.jpeg');
+        background-size: cover;
+        background-position: center; */
+    }
+
+    /* .formContentDiv::before{
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.6;
+        background-image: url('../../public/silhouette-man-with-tennis-racket-isolated-white-background_201926-1249.jpeg');
+        background-size: cover;
+        background-position: center;
+      } */
 
 }

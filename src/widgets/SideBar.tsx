@@ -1,5 +1,5 @@
 import React from 'react'
-import DateDisplay from '../components/DateDisplay'
+import { Link } from 'react-router-dom'
 
 const Sidebar: React.FC = () => {
     return (
@@ -17,22 +17,22 @@ const Sidebar: React.FC = () => {
       <div className="sidebar-wrapper">
         <ul className="nav">
           <li className="active ">
-            <a href="./dashboard.html">
+            <Link to="/dashboard">
               <i className="nc-icon nc-bank"></i>
               <p>Overview</p>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="./icons.html">
+            <Link to="/members">
               <i className="nc-icon nc-diamond"></i>
               <p>Members</p>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="./map.html">
+            <Link to="/sessions">
               <i className="nc-icon nc-pin-3"></i>
               <p>Sessions</p>
-            </a>
+            </Link>
           </li>
           <li>
             <a href="./notifications.html">
