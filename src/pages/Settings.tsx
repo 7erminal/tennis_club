@@ -4,12 +4,13 @@ import Sidebar from '../widgets/SideBar'
 
 type Props = {
     regDetails: ()=>void
+    changeSomething: (changeParam: string)=>void
   }
 
-const SettingsPage: React.FC<Props> = ({regDetails}) => {
+const SettingsPage: React.FC<Props> = ({regDetails, changeSomething}) => {
     return (
         <div className='wrapper'>
-            <Sidebar />
+            <Sidebar changeSomething={changeSomething} />
             <SettingsBody regDetails={regDetails} />
         </div>
     )

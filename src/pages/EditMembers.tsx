@@ -3,15 +3,17 @@ import EditMembersBody from '../widgets/EditMembersBody'
 import Sidebar from '../widgets/SideBar'
 
 type Props = {
-    regDetails: ()=>void,
+    regDetails: ()=>void
     registrationDetails_: any
+    changeSomething: (changeParam: string)=>void
+    members: any
   }
 
-const EditMembersPage: React.FC<Props> = ({regDetails, registrationDetails_}) => {
+const EditMembersPage: React.FC<Props> = ({regDetails, members, registrationDetails_, changeSomething}) => {
     return (
         <div className='wrapper'>
-            <Sidebar />
-            <EditMembersBody registrationDetails_={registrationDetails_} regDetails={regDetails} />
+            <Sidebar changeSomething={changeSomething}/>
+            <EditMembersBody members={members} registrationDetails_={registrationDetails_} regDetails={regDetails} />
         </div>
     )
 }

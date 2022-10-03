@@ -7,4 +7,5 @@ export const ROUTES = {
     MEMBERS_ROUTE: '/members',
     SESSIONS_ROUTE: '/sessions',
     EDITMEMBERS_ROUTE: '/edit-members',
+    CONFIGS_ROUTE: '/configs',
 }

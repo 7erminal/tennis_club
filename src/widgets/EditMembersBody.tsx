@@ -13,13 +13,14 @@ import EditMembersTab from './EditMembersTab';
 type Props = {
     regDetails: ()=>void
     registrationDetails_: any
+    members: any
   }
 
-const SettingsBody: React.FC<Props> = ({regDetails, registrationDetails_}) => {
+const SettingsBody: React.FC<Props> = ({members, regDetails, registrationDetails_}) => {
     return (
         <div className="main-panel">
             <Navbar_ regDetails={regDetails}/>
-            <EditMembersTab registrationDetails_={registrationDetails_} />
+            <EditMembersTab members={members} regDetails={regDetails} registrationDetails_={registrationDetails_} />
             {/* <SettingsContent /> */}
             </div>
     )

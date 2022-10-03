@@ -11,13 +11,14 @@ import MembersContent from './MembersContent';
 
 type Props = {
     regDetails: ()=>void
+    members: any
   }
 
-const MembersBody: React.FC<Props> = ({regDetails}) => {
+const MembersBody: React.FC<Props> = ({regDetails, members}) => {
     return (
         <div className="main-panel">
             <Navbar_ regDetails={regDetails} />
-            <MembersContent regDetails={regDetails} />
+            <MembersContent members={members} regDetails={regDetails} />
             </div>
     )
 }

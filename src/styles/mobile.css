@@ -53,9 +53,10 @@ body, #root{
 }
 
 .add-member-button-pane{
-    background-color: white;
+    /* background-color: white; */
     padding-top: 8px;
     padding-bottom: 8px;
+    z-index: 1;
 }
 
 .add-member-button{
@@ -64,4 +65,22 @@ body, #root{
 
 .add-member-button:hover{
     cursor: pointer;
+}
+
+#check-container{
+    text-align: left;
+    width: 100px;
+    margin: auto;
+    /* display: inline-block; */
+    position: relative;
+}
+
+.space-1{
+    position: relative;
+    height: 40px;
+    width: 100%;
+}
+
+#mname_list{
+    font-size: 25px;
 }

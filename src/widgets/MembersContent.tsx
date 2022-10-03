@@ -12,9 +12,10 @@ import { BsPlusCircle } from "react-icons/bs";
 
 type Props = {
     regDetails: ()=>void
+    members: any
   }
 
-const MembersContent: React.FC<Props> = ({regDetails}) => {
+const MembersContent: React.FC<Props> = ({regDetails, members}) => {
     return (
         <div className="contentCustom">
             <div className='dashboardPic'></div>
@@ -42,51 +43,19 @@ const MembersContent: React.FC<Props> = ({regDetails}) => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>123456</td>
-                                <td>123435</td>
-                                <td>Thomas</td>
-                                <td>Couple</td>
-                                <td>Active</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>123456</td>
-                                <td>123435</td>
-                                <td>Thomas</td>
-                                <td>Couple</td>
-                                <td>Active</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>123456</td>
-                                <td>123435</td>
-                                <td>Thomas</td>
-                                <td>Couple</td>
-                                <td>Active</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>123456</td>
-                                <td>123435</td>
-                                <td>Thomas</td>
-                                <td>Couple</td>
-                                <td>Active</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>123456</td>
-                                <td>123435</td>
-                                <td>Thomas</td>
-                                <td>Couple</td>
-                                <td>Active</td>
-                                <td></td>
-                            </tr>
+                            {
+                                members ? members.map((member: any,i: number)=>{
+                                    return <tr key={i}>
+                                        <td>{i+1}</td>
+                                        <td>{member.account_number}</td>
+                                        <td>{member.member_number}</td>
+                                        <td>{member.first_name} {member.last_name}</td>
+                                        <td>{member.plan}</td>
+                                        <td>active</td>
+                                        <td>active</td>
+                                    </tr>
+                                }) : <tr></tr>
+                            }
                         </tbody>
                     </Table>
                 </div>

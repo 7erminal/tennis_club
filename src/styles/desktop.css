@@ -63,6 +63,34 @@
         background-color: white;
     }
 
+    .contentCustom-configs{
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        background-color: white;
+        background: url('../../public/one-single-line-drawing-young-energetic-male-tennis-player.jpeg');
+        background-size:cover;
+        background-position: center;
+    }
+
+    .contentCustom-session{
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        background-color: white;
+        background: url('../../public/tennis_line.jpeg');
+        background-size:cover;
+        background-position: center;
+        padding-top: 10px;
+        padding-bottom: 50px;
+    }
+
+    .session-content-ab{
+        position: relative;
+        top: 400px;
+        /* background-color: aqua; */
+    }
+
     .DashboardContentCustom{
         position: relative;
         width: 100%;
@@ -98,6 +126,26 @@
         height: 400px;
     }
 
+    .sessionsPic{
+        position: relative;
+        background: url('../../public/ballsAndRackets.jpeg');
+        background-size:cover;
+        background-position: center;
+        width: 100%;
+        height: 400px;
+        top: 60px;
+    }
+
+    .configsPic{
+        position: relative;
+        background: url('../../public/tennis_line.jpeg');
+        background-size:cover;
+        background-position: center;
+        width: 100%;
+        height: 900px;
+        top: 60px;
+    }
+
     .dashboardTableContent{
         position: relative;
         width: 80%;
@@ -107,7 +155,36 @@
         box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     }
 
+    .sessionTableContent{
+        position: relative;
+        width: 80%;
+        background-color: #ffffff;
+        /* bottom: 55px; */
+        /* top: 400px; */
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        border-radius: 9px;
+        z-index: 1;
+    }
+
+    .configsContent{
+        position: relative;
+        width: 90%;
+        background-color: #ffffff;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        border-radius: 9px;
+    }
+
     .membersContentDiv{
+        position: relative;
+        width: 100%;
+        justify-content: center;
+        display: flex;
+        /* background-color: aqua; */
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .configsContentDiv{
         position: relative;
         width: 100%;
         justify-content: center;

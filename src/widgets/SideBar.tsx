@@ -1,7 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Sidebar: React.FC = () => {
+type Props = {
+  changeSomething: (changeParam: string)=>void
+}
+
+const Sidebar: React.FC<Props> = ({changeSomething}) => {
     return (
         <div className="sidebar" data-color="white" data-active-color="danger">
       <div className="logo">
@@ -23,13 +27,13 @@ const Sidebar: React.FC = () => {
             </Link>
           </li>
           <li>
-            <Link to="/members">
+            <Link to="/members" onClick={()=>changeSomething('members')}>
               <i className="nc-icon nc-diamond"></i>
               <p>Members</p>
             </Link>
           </li>
           <li>
-            <Link to="/sessions">
+            <Link to="/sessions" onClick={()=>changeSomething('sessions')}>
               <i className="nc-icon nc-pin-3"></i>
               <p>Sessions</p>
             </Link>
@@ -39,6 +43,12 @@ const Sidebar: React.FC = () => {
               <i className="nc-icon nc-bell-55"></i>
               <p>Sales</p>
             </a>
+          </li>
+          <li>
+            <Link to="/configs" onClick={()=>changeSomething('configs')}>
+              <i className="nc-icon nc-pin-3"></i>
+              <p>Configurations</p>
+            </Link>
           </li>
         </ul>
       </div>

@@ -7,23 +7,25 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import { Link } from "react-router-dom"
 import Navbar_ from './NavBar';
-import DashboardContent from './DashboardContent';
+import SessionsContent from './SessionsContent';
 
 type Props = {
     regDetails: ()=>void
     changeSomething: (changeParam: string)=>void
-    games: any
-    members: any
     configs_: any
+    members: any
+    games: any
+    scheduledCoaching: any
+    scheduledTraining: any
   }
 
-const DashboardBody: React.FC<Props> = ({games, members, configs_, regDetails, changeSomething}) => {
+const SessionsBody: React.FC<Props> = ({changeSomething, games, scheduledCoaching, scheduledTraining, regDetails, configs_, members}) => {
     return (
         <div className="main-panel">
             <Navbar_ regDetails={regDetails} />
-            <DashboardContent regDetails={regDetails} changeSomething={changeSomething} games={games} members={members} configs_={configs_}/>
+            <SessionsContent changeSomething={changeSomething} games={games} scheduledTraining={scheduledTraining} scheduledCoaching={scheduledCoaching} members={members} regDetails={regDetails} configs_={configs_} />
             </div>
     )
 }
 
-export default DashboardBody
+export default SessionsBody
