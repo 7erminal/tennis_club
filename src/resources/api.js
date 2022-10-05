@@ -3,7 +3,7 @@ import cookie from "react-cookies";
 
 class Api {
     async getRegistrationDetails () {
-		const response = await axios.get('http://localhost:8000/registrationdetails/')
+		const response = await axios.get('http://172.31.38.199:8000/registrationdetails/')
 
         return response.data
        
@@ -11,7 +11,7 @@ class Api {
 
 	// get configs
 	async getConfigs () {
-		const response = await axios.get('http://localhost:8000/get-configs/')
+		const response = await axios.get('http://172.31.38.199:8000/get-configs/')
 
         return response.data
        
@@ -19,20 +19,20 @@ class Api {
 
 	// get stats
 	async getGames () {
-		const response = await axios.get('http://localhost:8000/get-games')
+		const response = await axios.get('http://172.31.38.199:8000/get-games')
 
         return response.data
        
 	}
 
 	async getScheduledCoaching () {
-		const response = await axios.get('http://localhost:8000/get-coaching-schedules')
+		const response = await axios.get('http://172.31.38.199:8000/get-coaching-schedules')
 
         return response.data 
 	}
 
 	async getScheduledTraining () {
-		const response = await axios.get('http://localhost:8000/get-training-schedules')
+		const response = await axios.get('http://172.31.38.199:8000/get-training-schedules')
 
         return response.data 
 	}
@@ -43,7 +43,7 @@ class Api {
 
 		const config = {
 			method: 'post',
-			url: 'http://localhost:8000/api/registermember/',
+			url: 'http://172.31.38.199:8000/api/registermember/',
 			data: params,
 			// headers: {
 			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
@@ -65,7 +65,7 @@ class Api {
 
 		const config = {
 			method: 'post',
-			url: 'http://localhost:8000/api/addgroup/',
+			url: 'http://172.31.38.199:8000/api/addgroup/',
 			data: params,
 			// headers: {
 			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
@@ -86,7 +86,7 @@ class Api {
 
 		const config = {
 			method: 'post',
-			url: 'http://localhost:8000/api/addcourt/',
+			url: 'http://172.31.38.199:8000/api/addcourt/',
 			data: params,
 			// headers: {
 			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
@@ -107,7 +107,7 @@ class Api {
 
 		const config = {
 			method: 'post',
-			url: 'http://localhost:8000/api/addmatchtype/',
+			url: 'http://172.31.38.199:8000/api/addmatchtype/',
 			data: params,
 			// headers: {
 			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
@@ -128,7 +128,7 @@ class Api {
 
 		const config = {
 			method: 'post',
-			url: 'http://localhost:8000/api/addgametype/',
+			url: 'http://172.31.38.199:8000/api/addgametype/',
 			data: params,
 			// headers: {
 			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
@@ -149,7 +149,7 @@ class Api {
 
 		const config = {
 			method: 'post',
-			url: 'http://localhost:8000/api/addcoachingtype/',
+			url: 'http://172.31.38.199:8000/api/addcoachingtype/',
 			data: params,
 			// headers: {
 			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
@@ -171,7 +171,7 @@ class Api {
 
 		const config = {
 			method: 'post',
-			url: 'http://localhost:8000/api/addgame/',
+			url: 'http://172.31.38.199:8000/api/addgame/',
 			data: params,
 			// headers: {
 			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
@@ -193,7 +193,7 @@ class Api {
 
 		const config = {
 			method: 'post',
-			url: 'http://localhost:8000/api/schedulecoach/',
+			url: 'http://172.31.38.199:8000/api/schedulecoach/',
 			data: params,
 			// headers: {
 			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
@@ -215,7 +215,7 @@ class Api {
 
 		const config = {
 			method: 'post',
-			url: 'http://localhost:8000/api/scheduletraining/',
+			url: 'http://172.31.38.199:8000/api/scheduletraining/',
 			data: params,
 			// headers: {
 			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
@@ -232,7 +232,7 @@ class Api {
 
 	// get members
 	async getMembers(){
-		const response = await axios.get('http://localhost:8000/get-members')
+		const response = await axios.get('http://172.31.38.199:8000/get-members')
 
 		return response.data
 	}
