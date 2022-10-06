@@ -3,8 +3,10 @@ import cookie from "react-cookies";
 
 class Api {
     async getRegistrationDetails () {
+		console.log("getting registration details")
 		const response = await axios.get('http://172.31.38.199:8000/registrationdetails/')
 
+		console.log(response)
         return response.data
        
 	}
@@ -19,8 +21,10 @@ class Api {
 
 	// get stats
 	async getGames () {
+		console.log("getting games")
 		const response = await axios.get('http://172.31.38.199:8000/get-games')
 
+		console.log(response)
         return response.data
        
 	}
@@ -32,8 +36,10 @@ class Api {
 	}
 
 	async getScheduledTraining () {
+		console.log("getting scheduled trainings")
 		const response = await axios.get('http://172.31.38.199:8000/get-training-schedules')
 
+		console.log(response)
         return response.data 
 	}
 
