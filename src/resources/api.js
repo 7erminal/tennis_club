@@ -11,7 +11,7 @@ class Api {
 		}
 	}
 
-	// add game type
+	// login
 	async login(params){
 		console.log("what is being sent")
 

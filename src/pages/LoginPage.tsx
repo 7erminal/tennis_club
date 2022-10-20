@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import { Link, useNavigate } from "react-router-dom"
+import Api from './../resources/api'
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
@@ -19,11 +20,31 @@ const LoginPage: React.FC = () => {
 
     const login_ = () => {
 
-        users.map((user,i)=>{
-            console.log("comparing "+username+" and password "+password)
-            console.log("with "+user[0]+" : "+user[1])
-            user[0] == username ? user[1] == password ? navigate('/dashboard') : showError('Invalid credentials') : showError('Username does not exist')
-        }) 
+        // users.map((user,i)=>{
+        //     console.log("comparing "+username+" and password "+password)
+        //     console.log("with "+user[0]+" : "+user[1])
+        //     user[0] == username ? user[1] == password ? navigate('/dashboard') : showError('Invalid credentials') : showError('Username does not exist')
+        // }) 
+
+        const params = {
+            username: username, 
+            password: password,  
+        }
+
+        new Api().login(params).then(response=>{
+            console.log("Getting data")
+            console.log(response)
+            console.log(response.status)
+
+            if(response.status == 202){
+               console.log("Successful login")
+               navigate('/dashboard')
+            }
+
+        }).catch(error => {
+            console.log("Error returned is ... ")
+            console.log(error)
+        })
     }
 
     const showError = (serror: React.SetStateAction<string>) => {
