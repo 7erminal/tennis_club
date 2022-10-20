@@ -15,13 +15,16 @@ type Props = {
     games: any
     members: any
     configs_: any
+    scheduledCoaching: any
+    scheduledTraining: any
+    viewDetails: (module: string, modleid: string)=>void
   }
 
-const DashboardBody: React.FC<Props> = ({games, members, configs_, regDetails, changeSomething}) => {
+const DashboardBody: React.FC<Props> = ({viewDetails, games, scheduledTraining, scheduledCoaching, members, configs_, regDetails, changeSomething}) => {
     return (
         <div className="main-panel">
             <Navbar_ regDetails={regDetails} />
-            <DashboardContent regDetails={regDetails} changeSomething={changeSomething} games={games} members={members} configs_={configs_}/>
+            <DashboardContent viewDetails={viewDetails} regDetails={regDetails} scheduledCoaching={scheduledCoaching} scheduledTraining={scheduledTraining} changeSomething={changeSomething} games={games} members={members} configs_={configs_}/>
             </div>
     )
 }

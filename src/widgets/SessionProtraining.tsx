@@ -10,6 +10,7 @@ import { Link } from "react-router-dom"
 import Navbar_ from './NavBar';
 import { BsPlusCircle } from "react-icons/bs";
 import AddProTraining from "./AddProTrainingModal"
+import moment from 'moment'
 
 type Props = {
     regDetails: ()=>void
@@ -17,9 +18,10 @@ type Props = {
     members: any
     changeSomething: (changeParam: string)=>void
     scheduledTraining: any
+    viewDetails: (module: string, modleid: string)=>void
   }
 
-const SessionsProtraining: React.FC<Props> = ({regDetails, scheduledTraining, configs_, changeSomething, members}) => {
+const SessionsProtraining: React.FC<Props> = ({viewDetails, regDetails, scheduledTraining, configs_, changeSomething, members}) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -51,6 +53,7 @@ const SessionsProtraining: React.FC<Props> = ({regDetails, scheduledTraining, co
                             <th>End time</th>
                             <th>Professional</th>
                             <th>Status</th>
+                            <th>View details</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,10 +61,15 @@ const SessionsProtraining: React.FC<Props> = ({regDetails, scheduledTraining, co
                             scheduledTraining ? scheduledTraining.map((training: any, i: any)=>{
                                 return <tr key={i}>
                                     <td>{i+1}</td>
-                                    <td>{training.start_time}</td>
-                                    <td>{training.end_time}</td>
+                                    <td>{moment(training.start_time).format("YYYY-MM-DD HH:mm:ss")}</td>
+                                    <td>{moment(training.end_time).format("YYYY-MM-DD HH:mm:ss")}</td>
                                     <td>{training.professional_first_name} {training.professional_last_name}</td>
                                     <td></td>
+                                    <td>
+                                        <Link className='btn btn-success btn-sm' to='/get-training-schedule' onClick={()=>viewDetails('training',training.id)}>
+                                            View Details
+                                        </Link>
+                                    </td>
                                 </tr>
                             }) : ''
                            }

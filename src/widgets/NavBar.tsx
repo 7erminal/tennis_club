@@ -20,7 +20,7 @@ const Navbar_: React.FC<Props> = ({regDetails}) => {
                 <span className="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a className="navbar-brand" href="javascript:;">Tennis Club</a>
+            <a className="navbar-brand" href="javascript:;">Reach Tennis</a>
           </div>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-bar navbar-kebab"></span>
@@ -49,12 +49,12 @@ const Navbar_: React.FC<Props> = ({regDetails}) => {
               </li>
               <li className="nav-item btn-rotate dropdown">
                 <NavDropdown title={navDropdownTitle} id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                    {/* <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">
                         Another action
                     </NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                    <NavDropdown.Divider />
+                    <NavDropdown.Divider /> */}
                     <NavDropdown.Item href="#action/3.4">
                         <Link to='/'>Log out</Link>
                     </NavDropdown.Item>

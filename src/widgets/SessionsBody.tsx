@@ -17,13 +17,14 @@ type Props = {
     games: any
     scheduledCoaching: any
     scheduledTraining: any
+    viewDetails: (module: string, modleid: string)=>void
   }
 
-const SessionsBody: React.FC<Props> = ({changeSomething, games, scheduledCoaching, scheduledTraining, regDetails, configs_, members}) => {
+const SessionsBody: React.FC<Props> = ({viewDetails, changeSomething, games, scheduledCoaching, scheduledTraining, regDetails, configs_, members}) => {
     return (
         <div className="main-panel">
             <Navbar_ regDetails={regDetails} />
-            <SessionsContent changeSomething={changeSomething} games={games} scheduledTraining={scheduledTraining} scheduledCoaching={scheduledCoaching} members={members} regDetails={regDetails} configs_={configs_} />
+            <SessionsContent viewDetails={viewDetails} changeSomething={changeSomething} games={games} scheduledTraining={scheduledTraining} scheduledCoaching={scheduledCoaching} members={members} regDetails={regDetails} configs_={configs_} />
             </div>
     )
 }

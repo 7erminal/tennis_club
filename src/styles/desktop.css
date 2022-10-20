@@ -66,7 +66,7 @@
     .contentCustom-configs{
         position: relative;
         width: 100%;
-        height: 100vh;
+        height: 940px;
         background-color: white;
         background: url('../../public/one-single-line-drawing-young-energetic-male-tennis-player.jpeg');
         background-size:cover;
@@ -76,13 +76,14 @@
     .contentCustom-session{
         position: relative;
         width: 100%;
-        height: 100vh;
+        height: 940px;
         background-color: white;
         background: url('../../public/tennis_line.jpeg');
         background-size:cover;
         background-position: center;
-        padding-top: 10px;
+        /* padding-top: 10px; */
         padding-bottom: 50px;
+        /* top: 85px; */
     }
 
     .session-content-ab{
@@ -95,6 +96,11 @@
         position: relative;
         width: 100%;
         background-color: white;
+        height: 940px;
+        /* background: url('../../public/continuous-line-drawing-of-man-playing-tennis-tournament-single-one-line-art-of-sport-and-healthy-lifestyle-illustration-free-vector.jpeg'); */
+        background-size:cover;
+        background-position: center;
+        z-index: 1;
     }
 
     .dashboardContentDiv{
@@ -103,6 +109,7 @@
         justify-content: center;
         display: flex;
         padding-top: 150px;
+        z-index: 2;
     }
 
 
@@ -142,7 +149,7 @@
         background-size:cover;
         background-position: center;
         width: 100%;
-        height: 900px;
+        height: 540px;
         top: 60px;
     }
 

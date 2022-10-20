@@ -84,3 +84,25 @@ body, #root{
 #mname_list{
     font-size: 25px;
 }
+
+.member-image-div{
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+    position: relative;
+    border: 1px solid black;
+}
+
+.view-member-body{
+    position: relative;
+    top: 100px;
+    padding-top: 15px;
+    padding-bottom: 40px;
+}
+
+.fill-all{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+

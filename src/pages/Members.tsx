@@ -6,13 +6,14 @@ type Props = {
     regDetails: ()=>void
     changeSomething: (changeParam: string)=>void
     members: any
+    getMember: (memberid: string)=>void
   }
 
-const MembersPage: React.FC<Props> = ({regDetails, members, changeSomething}) => {
+const MembersPage: React.FC<Props> = ({regDetails, getMember, members, changeSomething}) => {
     return (
         <div className='wrapper'>
             <Sidebar changeSomething={changeSomething}/>
-            <MembersBody regDetails={regDetails} members={members} />
+            <MembersBody getMember={getMember} regDetails={regDetails} members={members} />
         </div>
     )
 }

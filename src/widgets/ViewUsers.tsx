@@ -10,32 +10,31 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { Link } from "react-router-dom"
 
 type Props = {
-    registrationDetails_: any
     regDetails: ()=>void
-    members: any
-    getMember: (memberid: string)=>void
+    users: any
+    getUser: (userid: string)=>void
 }
 
-const ViewMembers: React.FC<Props> = ({members, getMember, regDetails, registrationDetails_}) => {
+const ViewUsers: React.FC<Props> = ({users, getUser, regDetails}) => {
 
 
     return (
         <Container className='formContentDiv'>
             <Row style={{textAlign: 'center'}}>
-                <h2>Select member to edit</h2>
+                <h2>Select user to edit</h2>
             </Row>
             <Row className="justify-content-md-center">
                 <Col xs={12} sm={12} md={8} lg={7}>
                     <ListGroup>
                     {
-                        members ? members.map((member: any, i: any)=>{
+                        users ? users.map((user: any, i: any)=>{
                             return <ListGroup.Item action key={i}>
-                                    <Link className='fill-all' to='/view-member' onClick={()=>getMember(member.id)}>
+                                    <Link className='fill-all' to='/view-user' onClick={()=>getUser(user.id)}>
                                                 
                                     </Link>
-                                    <span id='mname_list'>{member.member_number}</span>
+                                    <span id='mname_list'>{user.username}</span>
                                     <br/>
-                                    <small>{member.first_name} {member.last_name}</small>
+                                    <small>{user.first_name} {user.last_name}</small>
                                 </ListGroup.Item>
                         }) : ''
                     }
@@ -46,4 +45,4 @@ const ViewMembers: React.FC<Props> = ({members, getMember, regDetails, registrat
     )
 }
 
-export default ViewMembers
+export default ViewUsers

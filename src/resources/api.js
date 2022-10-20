@@ -1,10 +1,40 @@
 import axios from 'axios'
 import cookie from "react-cookies";
 
+
+// 35.181.154.76
+
 class Api {
+	async callAPI (module, params){
+		if(module=='game'){
+			return await getGame(params)
+		}
+	}
+
+	// add game type
+	async login(params){
+		console.log("what is being sent")
+
+		const config = {
+			method: 'post',
+			url: 'http://localhost:8000/api/login/',
+			data: params,
+			// headers: {
+			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
+			// 	"Access-Control-Allow-Origin":"*",
+			// 	"accept": 'application/json',
+			// 	"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+			// }
+		}
+
+		const res = await axios(config)
+
+		return await res
+	}
+
     async getRegistrationDetails () {
 		console.log("getting registration details")
-		const response = await axios.get('http://35.181.154.76:8000/registrationdetails/')
+		const response = await axios.get('http://localhost:8000/registrationdetails/')
 
 		console.log(response)
         return response.data
@@ -13,7 +43,7 @@ class Api {
 
 	// get configs
 	async getConfigs () {
-		const response = await axios.get('http://35.181.154.76:8000/get-configs/')
+		const response = await axios.get('http://localhost:8000/get-configs/')
 
         return response.data
        
@@ -22,7 +52,7 @@ class Api {
 	// get stats
 	async getGames () {
 		console.log("getting games")
-		const response = await axios.get('http://35.181.154.76:8000/get-games')
+		const response = await axios.get('http://localhost:8000/get-games')
 
 		console.log(response)
         return response.data
@@ -30,17 +60,45 @@ class Api {
 	}
 
 	async getScheduledCoaching () {
-		const response = await axios.get('http://35.181.154.76:8000/get-coaching-schedules')
+		const response = await axios.get('http://localhost:8000/get-coaching-schedules')
 
         return response.data 
 	}
 
 	async getScheduledTraining () {
 		console.log("getting scheduled trainings")
-		const response = await axios.get('http://35.181.154.76:8000/get-training-schedules')
+		const response = await axios.get('http://localhost:8000/get-training-schedules')
 
 		console.log(response)
         return response.data 
+	}
+
+	// get users
+	async getUsers(){
+		const response = await axios.get('http://localhost:8000/get-users')
+
+		return response.data
+	}
+
+	// add user
+	async add_user(params){
+		console.log("what is being sent")
+
+		const config = {
+			method: 'post',
+			url: 'http://localhost:8000/api/registeruser/',
+			data: params,
+			// headers: {
+			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
+			// 	"Access-Control-Allow-Origin":"*",
+			// 	"accept": 'application/json',
+			// 	"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+			// }
+		}
+
+		const res = await axios(config)
+
+		return await res
 	}
 
   // add member
@@ -49,7 +107,28 @@ class Api {
 
 		const config = {
 			method: 'post',
-			url: 'http://35.181.154.76:8000/api/registermember/',
+			url: 'http://localhost:8000/api/registermember/',
+			data: params,
+			// headers: {
+			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
+			// 	"Access-Control-Allow-Origin":"*",
+			// 	"accept": 'application/json',
+			// 	"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+			// }
+		}
+
+		const res = await axios(config)
+
+		return await res
+	}
+
+	// add player level
+	async add_player_level(params){
+		console.log("what is being sent")
+
+		const config = {
+			method: 'post',
+			url: 'http://localhost:8000/api/addplayerlevel/',
 			data: params,
 			// headers: {
 			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
@@ -71,7 +150,7 @@ class Api {
 
 		const config = {
 			method: 'post',
-			url: 'http://35.181.154.76:8000/api/addgroup/',
+			url: 'http://localhost:8000/api/addgroup/',
 			data: params,
 			// headers: {
 			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
@@ -92,7 +171,7 @@ class Api {
 
 		const config = {
 			method: 'post',
-			url: 'http://35.181.154.76:8000/api/addcourt/',
+			url: 'http://localhost:8000/api/addcourt/',
 			data: params,
 			// headers: {
 			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
@@ -113,7 +192,7 @@ class Api {
 
 		const config = {
 			method: 'post',
-			url: 'http://35.181.154.76:8000/api/addmatchtype/',
+			url: 'http://localhost:8000/api/addmatchtype/',
 			data: params,
 			// headers: {
 			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
@@ -134,7 +213,7 @@ class Api {
 
 		const config = {
 			method: 'post',
-			url: 'http://35.181.154.76:8000/api/addgametype/',
+			url: 'http://localhost:8000/api/addgametype/',
 			data: params,
 			// headers: {
 			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
@@ -155,7 +234,7 @@ class Api {
 
 		const config = {
 			method: 'post',
-			url: 'http://35.181.154.76:8000/api/addcoachingtype/',
+			url: 'http://localhost:8000/api/addcoachingtype/',
 			data: params,
 			// headers: {
 			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
@@ -177,7 +256,7 @@ class Api {
 
 		const config = {
 			method: 'post',
-			url: 'http://35.181.154.76:8000/api/addgame/',
+			url: 'http://localhost:8000/api/addgame/',
 			data: params,
 			// headers: {
 			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
@@ -199,7 +278,7 @@ class Api {
 
 		const config = {
 			method: 'post',
-			url: 'http://35.181.154.76:8000/api/schedulecoach/',
+			url: 'http://localhost:8000/api/schedulecoach/',
 			data: params,
 			// headers: {
 			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
@@ -221,7 +300,7 @@ class Api {
 
 		const config = {
 			method: 'post',
-			url: 'http://35.181.154.76:8000/api/scheduletraining/',
+			url: 'http://localhost:8000/api/scheduletraining/',
 			data: params,
 			// headers: {
 			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
@@ -238,9 +317,64 @@ class Api {
 
 	// get members
 	async getMembers(){
-		const response = await axios.get('http://35.181.154.76:8000/get-members')
+		const response = await axios.get('http://localhost:8000/get-members')
 
 		return response.data
+	}
+
+	// get member
+	async getMember(params_){
+		console.log("what is being sent")
+		console.log(params_)
+
+		const response = await axios.get('http://localhost:8000/get-member', {params: params_})
+
+
+		return await response.data
+	}
+
+	// get member
+	async getUser(params_){
+		console.log("what is being sent")
+		console.log(params_)
+
+		const response = await axios.get('http://localhost:8000/get-user', {params: params_})
+
+
+		return await response.data
+	}
+
+	// get game details
+	async getGame(params_){
+		console.log("what is being sent")
+		console.log(params_)
+
+		const response = await axios.get('http://localhost:8000/get-game', {params: params_})
+
+
+		return await response.data
+	}
+
+	// get coaching details
+	async getCoachingDetails(params_){
+		console.log("what is being sent")
+		console.log(params_)
+
+		const response = await axios.get('http://localhost:8000/get-coaching-schedule', {params: params_})
+
+
+		return await response.data
+	}
+
+	// get training details
+	async getTrainingDetails(params_){
+		console.log("what is being sent")
+		console.log(params_)
+
+		const response = await axios.get('http://localhost:8000/get-training-schedule', {params: params_})
+
+
+		return await response.data
 	}
 }
 

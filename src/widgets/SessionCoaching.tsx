@@ -10,6 +10,7 @@ import { Link } from "react-router-dom"
 import Navbar_ from './NavBar';
 import { BsPlusCircle } from "react-icons/bs";
 import AddCoaching from "./AddCoachingModal"
+import moment from 'moment'
 
 type Props = {
     regDetails: ()=>void
@@ -17,9 +18,10 @@ type Props = {
     changeSomething: (changeParam: string)=>void
     members: any
     scheduledCoaching: any
+    viewDetails: (module: string, modleid: string)=>void
   }
 
-const SessionsCoaching: React.FC<Props> = ({members, scheduledCoaching, changeSomething, regDetails, configs_}) => {
+const SessionsCoaching: React.FC<Props> = ({viewDetails, members, scheduledCoaching, changeSomething, regDetails, configs_}) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -52,6 +54,7 @@ const SessionsCoaching: React.FC<Props> = ({members, scheduledCoaching, changeSo
                             <th>Type</th>
                             <th>Member</th>
                             <th>Status</th>
+                            <th>View details</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,11 +62,16 @@ const SessionsCoaching: React.FC<Props> = ({members, scheduledCoaching, changeSo
                             scheduledCoaching ? scheduledCoaching.map((coaching: any, i: any)=>{
                                 return <tr key={i}>
                                     <td>{i+1}</td>
-                                    <td>{coaching.start_time}</td>
-                                    <td>{coaching.end_time}</td>
+                                    <td>{moment(coaching.start_time).format("YYYY-MM-DD HH:mm:ss")}</td>
+                                    <td>{moment(coaching.end_time).format("YYYY-MM-DD HH:mm:ss")}</td>
                                     <td>{coaching.coaching_type}</td>
                                     <td>{coaching.first_name} {coaching.last_name}</td>
                                     <td>{coaching.status}</td>
+                                    <td>
+                                        <Link className='btn btn-success btn-sm' to='/get-coaching-schedule' onClick={()=>viewDetails('coaching',coaching.id)}>
+                                            View Details
+                                        </Link>
+                                    </td>
                                 </tr>
                             }) : ''
                            }

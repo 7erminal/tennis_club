@@ -8,4 +8,9 @@ export const ROUTES = {
     SESSIONS_ROUTE: '/sessions',
     EDITMEMBERS_ROUTE: '/edit-members',
     CONFIGS_ROUTE: '/configs',
+    VIEW_MEMBER: '/view-member',
+    VIEW_USER: '/view-user',
+    VIEW_GAME_DETAILS: '/view-game-details',
+    VIEW_COACHING_DETAILS: '/get-coaching-schedule',
+    VIEW_TRAINING_DETAILS: '/get-training-schedule',
 }

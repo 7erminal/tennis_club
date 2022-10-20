@@ -6,6 +6,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { BsPlusCircle } from "react-icons/bs";
 import AddGame from "./AddGameModal"
+import { Link } from "react-router-dom"
+import moment from 'moment'
 
 type Props = {
     regDetails: ()=>void
@@ -14,9 +16,10 @@ type Props = {
     members: any
     games: any
     viewType_: string
+    viewDetails: (module: string, modleid: string)=>void
   }
 
-const SessionsGames: React.FC<Props> = ({viewType_, changeSomething, games, regDetails, configs_, members}) => {
+const SessionsGames: React.FC<Props> = ({viewDetails, viewType_, changeSomething, games, regDetails, configs_, members}) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -59,6 +62,12 @@ const SessionsGames: React.FC<Props> = ({viewType_, changeSomething, games, regD
                             <th>Game</th>
                             <th>Match</th>
                             <th>Match Up</th>
+                            <th>Status</th>
+                            {
+                                viewType_ == 'update' ?
+                                <th>View details</th> :
+                                ''
+                            }
                             </tr>
                         </thead>
                         <tbody>
@@ -66,10 +75,20 @@ const SessionsGames: React.FC<Props> = ({viewType_, changeSomething, games, regD
                                 games ? games.map((game: any, i: any)=>{
                                     return <tr key={i}>
                                         <td>{i+1}</td>
-                                        <td>{game.start_time} - {game.end_time}</td>
+                                        <td>{moment(game.start_time).format("YYYY-MM-DD HH:mm:ss")}</td>
                                         <td>{game.game_type}</td>
                                         <td>{game.match_type}</td>
                                         <td>{game.opponent_1_first_name} {game.opponent_1_last_name} vs {game.opponent_2_first_name} {game.opponent_2_last_name}</td>
+                                        <td>{game.played == 'True' ? 'Played' : 'Pending'}</td>
+                                        {
+                                            viewType_ == 'update' ?
+                                            <td>
+                                                <Link className='btn btn-success btn-sm' to='/view-game-details' onClick={()=>viewDetails('game',game.id)}>
+                                                    View Details
+                                                </Link>
+                                            </td> :
+                                            ''
+                                        }
                                     </tr>
                                 }) : <tr></tr>
                             }

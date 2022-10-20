@@ -6,12 +6,16 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Api from './../resources/api'
 
+import moment from 'moment';
+
 type Props = {
     registrationDetails_: any
     regDetails: ()=>void
+    configs_: any
+    changeSomething: (changeParam: string)=>void
 }
 
-const AddMemberForm: React.FC<Props> = ({regDetails, registrationDetails_}) => {
+const AddMemberForm: React.FC<Props> = ({changeSomething, configs_, regDetails, registrationDetails_}) => {
 
     const [surname, setSurname] = useState('')
     const [firstname, setFirstname] = useState('')
@@ -24,6 +28,9 @@ const AddMemberForm: React.FC<Props> = ({regDetails, registrationDetails_}) => {
     const [plan, setPlan] = useState('')
     const [account, setAccount] = useState('none')
     const [selectAccount, setSelectAccount] = useState(false)
+    const [level, setLevel] = useState('')
+    const [gametype, setGametype] = useState('')
+    const [timeofplay, setTimeofplay] = useState('')
 
     const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		console.log(e.target.value)
@@ -84,6 +91,15 @@ const AddMemberForm: React.FC<Props> = ({regDetails, registrationDetails_}) => {
             case "account":
                 setAccount(e.target.value)
                 break;
+            case "level":
+                setLevel(e.target.value)
+                break;
+            case "game_type":
+                setGametype(e.target.value)
+                break;
+            case "timeofplay":
+                setTimeofplay(e.target.value)
+                break;
 			default:
 				return null
 		}
@@ -91,10 +107,35 @@ const AddMemberForm: React.FC<Props> = ({regDetails, registrationDetails_}) => {
 		console.log(e.target.getAttribute('name'))
     }
 
+    const dataCleanUp = () => {
+        console.log("clean up data ")
+
+        if(moment(dob, 'dd/mm/yyyy hh24:mi:ss').isValid()){
+            console.log("valid")
+        } else {
+            console.log("date is invalid")
+        }
+    }
+
     const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        const params = {email: email, dob: dob, gender: gender, first_name: firstname, surname: surname, other_names: othernames, mobile_number: mobilenumber, plan: plan, account: account}
+        dataCleanUp()
+
+        const params = {
+            email: email, 
+            dob: dob, 
+            gender: gender, 
+            first_name: firstname, 
+            surname: surname, 
+            other_names: othernames, 
+            mobile_number: mobilenumber, 
+            plan: plan, 
+            account: account,
+            level: level,
+            game_type: gametype,
+            time_of_play: timeofplay,
+        }
 
         console.log("sending ...")
         console.log(params)
@@ -115,8 +156,12 @@ const AddMemberForm: React.FC<Props> = ({regDetails, registrationDetails_}) => {
                 setSelectAccount(false)
                 setResidentialaddress('')
                 setGender('n')
-
+                setGametype('')
+                setTimeofplay('')
                 regDetails()
+                setLevel('')
+
+                changeSomething('members')
             }
 
         }).catch(error => {
@@ -214,7 +259,7 @@ const AddMemberForm: React.FC<Props> = ({regDetails, registrationDetails_}) => {
                             </Form.Text> */}
                         </Form.Group>
                         </div>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="my-3" controlId="formBasicEmail">
                             <Form.Label>Select Account</Form.Label>
                             <Form.Select aria-label="Default select example" name="account" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)}>
                                 <option value="none">Select Account</option>
@@ -223,6 +268,38 @@ const AddMemberForm: React.FC<Props> = ({regDetails, registrationDetails_}) => {
                                         return <option key={i} value={accountD.account_number}>{ accountD.account_number }</option>
                                     }) : ''
                                 }
+                            </Form.Select>
+                        </Form.Group>
+                        <hr/>
+                        <Form.Group className="my-3" controlId="formBasicEmail">
+                            <Form.Label>Select Level</Form.Label>
+                            <Form.Select aria-label="Default select example" name="level" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)}>
+                                <option value="none">Select Level</option>
+                                {
+                                    configs_.PlayerLevels && configs_ ? configs_.PlayerLevels.map((level_: any, i: any) => {
+                                        return <option key={i} value={level_.id}>{ level_.level_name }</option>
+                                    }) : ''
+                                }
+                            </Form.Select>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Select Game Type</Form.Label>
+                            <Form.Select aria-label="Default select example" name="game_type" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)}>
+                                <option value="none">Select Game Type</option>
+                                {
+                                    configs_.GameTypes && configs_ ? configs_.GameTypes.map((gameType: any, i: any) => {
+                                        return <option key={i} value={gameType.id}>{ gameType.game_type_name }</option>
+                                    }) : ''
+                                }
+                            </Form.Select>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Select Preferred Time of Play</Form.Label>
+                            <Form.Select aria-label="Default select example" name="timeofplay" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)}>
+                                <option value="">Time of Play</option>
+                                <option value="morning">Morning</option>
+                                <option value="afternoon">Afternoon</option>
+                                <option value="evening">Evening</option>
                             </Form.Select>
                         </Form.Group>
                         {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">

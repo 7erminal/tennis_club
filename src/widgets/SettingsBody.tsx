@@ -12,13 +12,17 @@ import SettingsTab from './SettingsTab';
 
 type Props = {
     regDetails: ()=>void
+    changeSomething: (changeParam: string)=>void
+    configs_: any
+    users: any
+    getUser: (userid: string)=>void
   }
 
-const SettingsBody: React.FC<Props> = ({regDetails}) => {
+const SettingsBody: React.FC<Props> = ({users, getUser, regDetails, changeSomething, configs_}) => {
     return (
         <div className="main-panel">
             <Navbar_ regDetails={regDetails}/>
-            <SettingsTab />
+            <SettingsTab getUser={getUser} users={users} configs_={configs_} regDetails={regDetails} changeSomething={changeSomething} />
             {/* <SettingsContent /> */}
             </div>
     )

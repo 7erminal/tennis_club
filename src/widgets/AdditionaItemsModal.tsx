@@ -245,6 +245,29 @@ const AdditionalItems: React.FC<Props> = ({show, handleClose, name_, formFor, co
                 console.log("Error returned is ... ")
                 console.log(error)
             })
+        } else if(formFor=="level_name"){
+
+            params = {level_name: name_}
+
+            new Api().add_player_level(params).then(response=>{
+                console.log("Getting data")
+                console.log(response)
+                console.log(response.status)
+    
+                if(response.status == 202){
+    
+                    console.log("successful")
+    
+                    console.log(response)
+                    console.log(response.data.user_id)
+    
+                    handleClose()
+                }
+    
+            }).catch(error => {
+                console.log("Error returned is ... ")
+                console.log(error)
+            })
         }
     }
 
@@ -265,7 +288,7 @@ const AdditionalItems: React.FC<Props> = ({show, handleClose, name_, formFor, co
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Enter description</Form.Label>
                     {
-                        formFor == 'coaching_type' ?
+                        formFor == 'coaching_type' || formFor == 'level_name' ?
                         <Form.Control value={description} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} as="textarea" name="description" rows={2} disabled/> :
                         <Form.Control value={description} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} as="textarea" name="description" rows={2} />
                     }

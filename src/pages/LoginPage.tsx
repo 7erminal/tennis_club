@@ -37,12 +37,12 @@ const LoginPage: React.FC = () => {
                 <div style={{justifyContent: 'center', display: 'flex', fontFamily: 'Copperplate'}}>
                     <Container>
                         <Row>
-                            <Col lg={6} md={6} xs={12} sm={12}><h1 style={{float:'right'}}>Tennis</h1></Col>
+                            <Col lg={6} md={6} xs={12} sm={12}><h1 style={{float:'right'}}>Reach</h1></Col>
                             <Col lg={6} md={6} xs={12} sm={12}></Col>
                         </Row>
                         <Row>
                             <Col lg={6} md={6} xs={12} sm={12}></Col>
-                            <Col lg={6} md={6} xs={12} sm={12}><h1>Club</h1></Col>
+                            <Col lg={6} md={6} xs={12} sm={12}><h1>Tennis</h1></Col>
                         </Row>
                     </Container>
                 </div>

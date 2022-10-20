@@ -11,6 +11,7 @@ import AddCourt from './AddCourt';
 import AddMatchType from './AddMatchType';
 import AddGameType from './AddGameType';
 import AddCoachingType from './AddCoachingType';
+import AddPlayerLevel from './AddPlayerLevel';
 
 type Props = {
     regDetails: ()=>void
@@ -38,6 +39,9 @@ const ConfigurationsContent: React.FC<Props> = ({getConfigDetails_, regDetails, 
                         </Col>
                         <Col md={6} sm={12} className="my-2">
                             <AddCoachingType getConfigDetails_={getConfigDetails_} configs_={configs_}/>
+                        </Col>
+                        <Col md={6} sm={12} className="my-2">
+                            <AddPlayerLevel getConfigDetails_={getConfigDetails_} configs_={configs_}/>
                         </Col>
                     </Row>
                 </div>
