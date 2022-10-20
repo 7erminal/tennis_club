@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.4f407f85.css",
-    "main.js": "./static/js/main.6f34d839.js",
+    "main.css": "./static/css/main.ff24c435.css",
+    "main.js": "./static/js/main.5beffd15.js",
     "static/media/Tennis-Wallpaper.jpg": "./static/media/Tennis-Wallpaper.5c8be1443501c4e82ab3.jpg",
     "static/media/ballsAndRackets.jpeg": "./static/media/ballsAndRackets.08f69b32c27022b69ff6.jpeg",
     "static/media/tennis_line.jpeg": "./static/media/tennis_line.c2c0fe96438f6b3e3bc6.jpeg",
@@ -12,11 +12,11 @@
     "static/media/nucleo-icons.woff": "./static/media/nucleo-icons.8e954b749f951b654fc6.woff",
     "static/media/nucleo-icons.woff2": "./static/media/nucleo-icons.ec16bc4cc4526801004d.woff2",
     "index.html": "./index.html",
-    "main.4f407f85.css.map": "./static/css/main.4f407f85.css.map",
-    "main.6f34d839.js.map": "./static/js/main.6f34d839.js.map"
+    "main.ff24c435.css.map": "./static/css/main.ff24c435.css.map",
+    "main.5beffd15.js.map": "./static/js/main.5beffd15.js.map"
   },
   "entrypoints": [
-    "static/css/main.4f407f85.css",
-    "static/js/main.6f34d839.js"
+    "static/css/main.ff24c435.css",
+    "static/js/main.5beffd15.js"
   ]
 }
