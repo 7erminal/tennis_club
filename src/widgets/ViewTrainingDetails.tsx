@@ -64,7 +64,7 @@ const ViewTrainingBody: React.FC<Props> = ({selectedTrainingDetails, regDetails,
                             <ListGroup.Item><b>Member Number: </b>{selectedTrainingDetails.member_number}</ListGroup.Item>
                             <ListGroup.Item><b>Name: </b>{selectedTrainingDetails.first_name} {selectedTrainingDetails.last_name}</ListGroup.Item>
                             <ListGroup.Item><b>Gender: </b>{selectedTrainingDetails.gender == 'm' ? 'Male' : selectedTrainingDetails.gender == 'f' ? 'Female' : 'Other'}</ListGroup.Item>
-                            <ListGroup.Item><b>Group: </b>{selectedTrainingDetails.group_name}</ListGroup.Item>
+                            <ListGroup.Item><b>Mobile Number: </b>{selectedTrainingDetails.mobile_number}</ListGroup.Item>
                         </ListGroup>
                     </Col>
                 </Row>

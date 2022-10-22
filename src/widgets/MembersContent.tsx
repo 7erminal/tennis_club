@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
@@ -9,25 +9,62 @@ import Form from 'react-bootstrap/Form';
 import { Link } from "react-router-dom"
 import Navbar_ from './NavBar';
 import { BsPlusCircle } from "react-icons/bs";
+import AddMemberModals from './AddMemberModals';
+import Toast from 'react-bootstrap/Toast';
 
 type Props = {
     regDetails: ()=>void
     members: any
     getMember: (memberid: string)=>void
+    registrationDetails_: any
+    configs_: any
+    changeSomething: (changeParam: string)=>void
   }
 
-const MembersContent: React.FC<Props> = ({regDetails, members, getMember}) => {
+const MembersContent: React.FC<Props> = ({changeSomething, registrationDetails_, regDetails, members, getMember, configs_}) => {
+    const [showDetails, setShowDetails] = useState(false);
+    const [detailsValidated, setDetailsValidated] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
+
+    const toggleShowSuccess = () => setShowSuccess(!showSuccess);
+
+    const showRegistrationModal = () => {
+        regDetails()
+        handleDetailsShow()
+        setDetailsValidated(false)
+    }
+
+    const set_detailsValidated = () => {
+        setDetailsValidated(true)
+    }
+
+    const handleDetailsClose = () => setShowDetails(false);
+    const handleDetailsShow = () => setShowDetails(true);
+
     return (
         <div className="contentCustom">
+            <Toast show={showSuccess} onClose={toggleShowSuccess}>
+                <Toast.Header>
+                    <img
+                    src="holder.js/20x20?text=%20"
+                    className="rounded me-2"
+                    alt=""
+                    />
+                    <strong className="me-auto">Success</strong>
+                    {/* <small>11 mins ago</small> */}
+                </Toast.Header>
+                <Toast.Body>Details have been added successfully</Toast.Body>
+                </Toast>
+            <AddMemberModals toggleShowSuccess={toggleShowSuccess} set_detailsValidated={set_detailsValidated} detailsValidated={detailsValidated} showDetails={showDetails} handleDetailsShow={handleDetailsShow} handleDetailsClose={handleDetailsClose} changeSomething={changeSomething} registrationDetails_={registrationDetails_} configs_={configs_}  />
             <div className='dashboardPic'></div>
             <div className='membersContentDiv'>
                 <div className='dashboardTableContent'>
                     <Container className="add-member-button-pane">
                         <Row>
                             <Col>
-                                <Link to="/edit-members" onClick={regDetails} className='add-member-button'>
+                                <span onClick={showRegistrationModal} className='add-member-button'>
                                     <BsPlusCircle size={50} /> <span style={{fontSize: '22px'}} >Add Member</span>
-                                </Link>
+                                </span>
                             </Col>
                         </Row>
                     </Container>
