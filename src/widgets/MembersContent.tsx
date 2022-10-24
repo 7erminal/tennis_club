@@ -55,7 +55,7 @@ const MembersContent: React.FC<Props> = ({changeSomething, registrationDetails_,
                 </Toast.Header>
                 <Toast.Body>Details have been added successfully</Toast.Body>
                 </Toast>
-            <AddMemberModals toggleShowSuccess={toggleShowSuccess} set_detailsValidated={set_detailsValidated} detailsValidated={detailsValidated} showDetails={showDetails} handleDetailsShow={handleDetailsShow} handleDetailsClose={handleDetailsClose} changeSomething={changeSomething} registrationDetails_={registrationDetails_} configs_={configs_}  />
+            <AddMemberModals members={members} toggleShowSuccess={toggleShowSuccess} set_detailsValidated={set_detailsValidated} detailsValidated={detailsValidated} showDetails={showDetails} handleDetailsShow={handleDetailsShow} handleDetailsClose={handleDetailsClose} changeSomething={changeSomething} registrationDetails_={registrationDetails_} configs_={configs_}  />
             <div className='dashboardPic'></div>
             <div className='membersContentDiv'>
                 <div className='dashboardTableContent'>

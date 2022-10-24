@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.ff24c435.css",
-    "main.js": "./static/js/main.de6f1852.js",
+    "main.js": "./static/js/main.470914ac.js",
     "static/media/Tennis-Wallpaper.jpg": "./static/media/Tennis-Wallpaper.5c8be1443501c4e82ab3.jpg",
     "static/media/ballsAndRackets.jpeg": "./static/media/ballsAndRackets.08f69b32c27022b69ff6.jpeg",
     "static/media/tennis_line.jpeg": "./static/media/tennis_line.c2c0fe96438f6b3e3bc6.jpeg",
@@ -13,10 +13,10 @@
     "static/media/nucleo-icons.woff2": "./static/media/nucleo-icons.ec16bc4cc4526801004d.woff2",
     "index.html": "./index.html",
     "main.ff24c435.css.map": "./static/css/main.ff24c435.css.map",
-    "main.de6f1852.js.map": "./static/js/main.de6f1852.js.map"
+    "main.470914ac.js.map": "./static/js/main.470914ac.js.map"
   },
   "entrypoints": [
     "static/css/main.ff24c435.css",
-    "static/js/main.de6f1852.js"
+    "static/js/main.470914ac.js"
   ]
 }

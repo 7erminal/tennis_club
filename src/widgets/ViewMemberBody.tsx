@@ -10,6 +10,9 @@ type Props = {
   }
 
 const ViewMemberBody: React.FC<Props> = ({selectedMemberDetails, regDetails, changeSomething}) => {
+    const image_source = 'http://localhost:8000/media/'+selectedMemberDetails.picture
+    console.log("Image source is")
+    console.log(image_source)
     return (
         <div className="main-panel">
             <Navbar_ regDetails={regDetails}/>
@@ -18,7 +21,7 @@ const ViewMemberBody: React.FC<Props> = ({selectedMemberDetails, regDetails, cha
                     <span>edit</span>
                 </Row>
                 <Row style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                    <div className="member-image-div"></div>
+                    <div className="member-image-div"><img src={image_source}/></div>
                 </Row>
                 <Row style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', paddingTop: '8px', flexDirection: 'column' }}>
                     <h3>{selectedMemberDetails.first_name} {selectedMemberDetails.last_name}</h3>

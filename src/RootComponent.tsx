@@ -21,6 +21,8 @@ import Api from './resources/api'
 import GameDetails from './pages/GameDetails'
 import CoachingDetails from './pages/CoachingDetails'
 import TrainingDetails from './pages/TrainingDetails'
+import PaymentsPage from './pages/Payments'
+import AddPaymentsPage from './pages/AddPayment'
 
 const RootComponent: React.FC = () => {
     const [registrationDetails, setRegistrationDetails] = useState<Array<any>>([])
@@ -240,6 +242,8 @@ const RootComponent: React.FC = () => {
                 <Route path={ROUTES.VIEW_GAME_DETAILS} element={<GameDetails viewDetails={viewDetails_} selectedGameDetails={selectedGameDetails} changeSomething={changeSomething} regDetails={regDetails} configs_={configs}/>} />
                 <Route path={ROUTES.VIEW_COACHING_DETAILS} element={<CoachingDetails viewDetails={viewDetails_} selectedCoachingDetails={selectedCoachingDetails} changeSomething={changeSomething} regDetails={regDetails} configs_={configs}/>} />
                 <Route path={ROUTES.VIEW_TRAINING_DETAILS} element={<TrainingDetails viewDetails={viewDetails_} selectedTrainingDetails={selectedTrainingDetails} changeSomething={changeSomething} regDetails={regDetails} configs_={configs}/>} />
+                <Route path={ROUTES.PAYMENTS} element={<PaymentsPage viewDetails={viewDetails_} changeSomething={changeSomething} regDetails={regDetails} configs_={configs}/>} />
+                <Route path={ROUTES.ADD_PAYMENT} element={<AddPaymentsPage viewDetails={viewDetails_} changeSomething={changeSomething} regDetails={regDetails} configs_={configs} members={members}/>} />
             </Routes>
         </Router>
     )

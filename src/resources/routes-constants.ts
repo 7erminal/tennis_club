@@ -13,4 +13,6 @@ export const ROUTES = {
     VIEW_GAME_DETAILS: '/view-game-details',
     VIEW_COACHING_DETAILS: '/get-coaching-schedule',
     VIEW_TRAINING_DETAILS: '/get-training-schedule',
+    PAYMENTS: '/payments',
+    ADD_PAYMENT: '/add-payment',
 }

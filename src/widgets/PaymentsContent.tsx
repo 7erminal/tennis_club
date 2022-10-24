@@ -17,25 +17,16 @@ type Props = {
     regDetails: ()=>void
     changeSomething: (changeParam: string)=>void
     configs_: any
-    members: any
-    games: any
-    scheduledCoaching: any
-    scheduledTraining: any
     viewDetails: (module: string, modleid: string)=>void
   }
 
-const PaymentsContent: React.FC<Props> = ({viewDetails, changeSomething, games, scheduledCoaching, scheduledTraining, regDetails, configs_, members}) => {
+const PaymentsContent: React.FC<Props> = ({viewDetails, changeSomething, regDetails, configs_}) => {
     const [viewType, setViewType] = useState('update')
 
     return (
         <div className="contentCustom-session">
             <div className='session-content-ab'>
-                <SessionGames viewDetails={viewDetails} viewType_={viewType} changeSomething={changeSomething} games={games} members={members} regDetails={regDetails} configs_={configs_} />
-                <div className="space-1"></div>
-                <SessionCoaching viewDetails={viewDetails} changeSomething={changeSomething} scheduledCoaching={scheduledCoaching} members={members} regDetails={regDetails} configs_={configs_} />
-                <div className="space-1"></div>
-                <SessionsProtraining viewDetails={viewDetails} scheduledTraining={scheduledTraining} regDetails={regDetails} members={members} configs_={configs_} changeSomething={changeSomething} />
-                <div className="space-1"></div>
+                
             </div>
         </div>
     )
