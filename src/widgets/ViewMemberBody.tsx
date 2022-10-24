@@ -10,7 +10,7 @@ type Props = {
   }
 
 const ViewMemberBody: React.FC<Props> = ({selectedMemberDetails, regDetails, changeSomething}) => {
-    const image_source = 'http://localhost:8000/media/'+selectedMemberDetails.picture
+    const image_source = 'http://35.181.154.76:8000/media/'+selectedMemberDetails.picture
     console.log("Image source is")
     console.log(image_source)
     return (
