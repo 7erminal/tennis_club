@@ -75,7 +75,7 @@ const ViewMemberBody: React.FC<Props> = ({getUser, registrationDetails_, configs
                         </ListGroup>
                     </Col>
                 </Row>
-                <a className="btn btn-danger btn-sm my-4" href={`http://localhost:8000/print_as_pdf/${selectedMemberDetails.id}/`} >Print</a>
+                <a className="btn btn-danger btn-sm my-4" href={`http://35.181.154.76:8000/print_as_pdf/${selectedMemberDetails.id}/`} >Print</a>
             </Container>
             }
         </div>
