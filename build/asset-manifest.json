@@ -1,8 +1,9 @@
 {
   "files": {
-    "main.css": "./static/css/main.4b740007.css",
-    "main.js": "./static/js/main.af7baf21.js",
+    "main.css": "./static/css/main.af8c57d1.css",
+    "main.js": "./static/js/main.a281738b.js",
     "static/media/Tennis-Wallpaper.jpg": "./static/media/Tennis-Wallpaper.5c8be1443501c4e82ab3.jpg",
+    "static/media/federerreflectsthursday.jpeg": "./static/media/federerreflectsthursday.aefd68321f9cb98119d7.jpeg",
     "static/media/ballsAndRackets.jpeg": "./static/media/ballsAndRackets.08f69b32c27022b69ff6.jpeg",
     "static/media/tennis_line.jpeg": "./static/media/tennis_line.c2c0fe96438f6b3e3bc6.jpeg",
     "static/media/one-single-line-drawing-young-energetic-male-tennis-player.jpeg": "./static/media/one-single-line-drawing-young-energetic-male-tennis-player.d70c708c5dd661d03985.jpeg",
@@ -12,11 +13,11 @@
     "static/media/nucleo-icons.woff": "./static/media/nucleo-icons.8e954b749f951b654fc6.woff",
     "static/media/nucleo-icons.woff2": "./static/media/nucleo-icons.ec16bc4cc4526801004d.woff2",
     "index.html": "./index.html",
-    "main.4b740007.css.map": "./static/css/main.4b740007.css.map",
-    "main.af7baf21.js.map": "./static/js/main.af7baf21.js.map"
+    "main.af8c57d1.css.map": "./static/css/main.af8c57d1.css.map",
+    "main.a281738b.js.map": "./static/js/main.a281738b.js.map"
   },
   "entrypoints": [
-    "static/css/main.4b740007.css",
-    "static/js/main.af7baf21.js"
+    "static/css/main.af8c57d1.css",
+    "static/js/main.a281738b.js"
   ]
 }
