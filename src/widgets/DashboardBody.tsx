@@ -18,12 +18,13 @@ type Props = {
     scheduledCoaching: any
     scheduledTraining: any
     viewDetails: (module: string, modleid: string)=>void
+    getUser: (userid: string)=>void
   }
 
-const DashboardBody: React.FC<Props> = ({viewDetails, games, scheduledTraining, scheduledCoaching, members, configs_, regDetails, changeSomething}) => {
+const DashboardBody: React.FC<Props> = ({getUser, viewDetails, games, scheduledTraining, scheduledCoaching, members, configs_, regDetails, changeSomething}) => {
     return (
         <div className="main-panel">
-            <Navbar_ regDetails={regDetails} />
+            <Navbar_ getUser={getUser} regDetails={regDetails} />
             <DashboardContent viewDetails={viewDetails} regDetails={regDetails} scheduledCoaching={scheduledCoaching} scheduledTraining={scheduledTraining} changeSomething={changeSomething} games={games} members={members} configs_={configs_}/>
             </div>
     )

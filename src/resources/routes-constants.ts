@@ -5,6 +5,7 @@ export const ROUTES = {
     ADDMEMBER_ROUTE: '/add-member',
     MODIFYMEMBER_ROUTE: '/modify-member',
     MEMBERS_ROUTE: '/members',
+    ALL_MEMBERS_ROUTE: '/all-members',
     SESSIONS_ROUTE: '/sessions',
     EDITMEMBERS_ROUTE: '/edit-members',
     CONFIGS_ROUTE: '/configs',
@@ -15,4 +16,5 @@ export const ROUTES = {
     VIEW_TRAINING_DETAILS: '/get-training-schedule',
     PAYMENTS: '/payments',
     ADD_PAYMENT: '/add-payment',
+    EDIT_MEMBER: '/edit-member',
 }

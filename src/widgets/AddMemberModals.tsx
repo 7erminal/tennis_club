@@ -259,6 +259,7 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
             emergency_contact_name: emergencyName,
             emergency_contact_number: emergencyNumber,
             emergency_contact_address: emergencyAddress,
+            address: residentialaddress,
         }
 
         console.log("sending ...")
@@ -524,7 +525,7 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
                                 </Form.Select>
                             </Form.Group>
                             <Form.Group>
-                                <Form.Label>Emmergency Contact</Form.Label>
+                                <Form.Label>Emergency Contact</Form.Label>
                                 <Form.Control size='sm' value={emergencyName} type="text" placeholder="Enter Contact Name" name="em_name" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} required />
                                 <Form.Control size='sm' className="mt-1" value={emergencyNumber} type="text" placeholder="Enter Contact Number" name="em_number" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} required />
                                 <Form.Control size='sm' className="mt-1" value={emergencyAddress} type="text" placeholder="Enter Contact Address" name="em_address" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} />
@@ -702,7 +703,7 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
                     modeOfPayment == 'cash' ?
                     <>
                     <Form.Select className="my-4" aria-label="Default select example" name="receiver" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)}>
-                        <option>Received by</option>
+                        <option>Paid by</option>
                         {
                             members ? members.map((member: any, i: number)=>{
                                 return <option key={i} value={member.id}>{member.first_name} {member.last_name}</option>
@@ -710,7 +711,7 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
                         }
                     </Form.Select>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Cost</Form.Label>
+                        <Form.Label>Charge</Form.Label>
                         <Form.Control value={amount} type="text" placeholder="Enter cost" name="cost" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} />
                         {/* <Form.Text className="text-muted">
                             We will never share your email with anyone else.
@@ -729,8 +730,8 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
                     </> : modeOfPayment == 'momo' ?
                         <>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Cost</Form.Label>
-                            <Form.Control value={amount} type="text" placeholder="Enter cost" name="cost" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} />
+                            <Form.Label>Charge</Form.Label>
+                            <Form.Control value={amount} type="text" placeholder="Enter charge" name="cost" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} />
                             {/* <Form.Text className="text-muted">
                                 We will never share your email with anyone else.
                             </Form.Text> */}
@@ -745,7 +746,7 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Cost</Form.Label>
+                            <Form.Label>Paid by</Form.Label>
                             <Form.Control value={receiver} type="text" placeholder="Receiver" name="receiver" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} />
                             {/* <Form.Text className="text-muted">
                                 We will never share your email with anyone else.

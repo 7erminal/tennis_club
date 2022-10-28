@@ -360,7 +360,7 @@ class Api {
 
 	// get member
 	async getUser(params_){
-		console.log("what is being sent")
+		console.log("what is being sent to get user")
 		console.log(params_)
 
 		const response = await axios.get('http://35.181.154.76:8000/get-user', {params: params_})
@@ -400,6 +400,17 @@ class Api {
 
 
 		return await response.data
+	}
+
+	// Search
+	async searchAll(params_){
+		console.log("what is being sent to search")
+		console.log(params_)
+
+		const response = await axios.get('http://35.181.154.76:8000/search', {params: params_})
+
+
+		return await response
 	}
 }
 

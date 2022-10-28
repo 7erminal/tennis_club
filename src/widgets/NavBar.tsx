@@ -1,14 +1,71 @@
-import React from 'react'
+import React, { useCallback, useLayoutEffect, useRef, useState } from 'react'
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Dropdown from 'react-bootstrap/Dropdown';
 import { Link } from 'react-router-dom'
+import debounce from "lodash/debounce"
+import Api from '../resources/api'
 
 type Props = {
   regDetails: ()=>void
+  getUser: (userid: string)=>void
 }
 
-const Navbar_: React.FC<Props> = ({regDetails}) => {
+const Navbar_: React.FC<Props> = ({regDetails, getUser}) => {
+  const [searchTerm, setSearchTerm] = useState('')
+  const [searchResults, setSearchResults] = useState<Array<any>>([])
+  const [showDropdown, setShowDropdown] = useState(false)
+
+
+   const firstUpdate = useRef(true);
+
     const navDropdownTitle = (<i className='nc-icon nc-bell-55'></i>);
 
+    useLayoutEffect(()=>{
+      // start search
+
+      console.log("Search started")
+      if (firstUpdate.current) {
+         firstUpdate.current = false;
+         return;
+      }
+
+      // startSearch()
+   },[searchTerm])
+
+   const searchChange = (e: any) => {
+      setSearchTerm(e.target.value)
+      // searchTermFunc(e.target.value)
+      startSearch(e.target.value)
+      setShowDropdown(true)
+   }
+
+   const sendToApi = (inputValue: string) => {
+      console.log("about to go search data")
+
+      const params = {search_word: inputValue}
+
+      new Api().searchAll(params)
+                .then(response => {
+                    console.log('response from story selected is ')
+                     console.log(response)
+
+                     if(response.status == 202){
+                      console.log("setting search response")
+                      setSearchResults(response.data)
+                     }
+                    });
+   }
+
+   const startSearch = useCallback(debounce(sendToApi,500),[])
+
+   const outFocus_ = () => {
+    const delayInMilliseconds = 500; //1 second
+
+    setTimeout(function() {
+      setShowDropdown(false)
+    }, delayInMilliseconds); 
+   }
     return (
         <nav className="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
         <div className="container-fluid">
@@ -30,7 +87,14 @@ const Navbar_: React.FC<Props> = ({regDetails}) => {
           <div className="collapse navbar-collapse justify-content-end" id="navigation">
             <form>
               <div className="input-group no-border">
-                <input type="text" value="" className="form-control" placeholder="Search..." />
+                <input 
+                  type="text" 
+                  value={searchTerm} 
+                  className="form-control" 
+                  placeholder="Search..." 
+                  onChange={searchChange}
+                  onBlur={outFocus_}
+                />
                 <div className="input-group-append">
                   <div className="input-group-text">
                     <i className="nc-icon nc-zoom-split"></i>
@@ -70,6 +134,25 @@ const Navbar_: React.FC<Props> = ({regDetails}) => {
               </li>
             </ul>
           </div>
+          {
+            showDropdown == false ? '' : 
+            <Dropdown.Menu show className="searchDropDown" >
+               <ListGroup>
+              {
+                searchResults ? searchResults.map((result: any, i: any)=>{
+                  return <ListGroup.Item action key={i}>
+                            <Link className='fill-all' to='/view-member' onClick={()=>getUser(result.id)}>
+                                        
+                            </Link>
+                            {/* <span id='mname_list'>{result.username}</span>
+                            <br/> */}
+                            <small>{result.first_name} {result.last_name}</small>
+                        </ListGroup.Item>
+                }) : <div>No results found</div>
+              }
+              </ListGroup>
+            </Dropdown.Menu>
+          }
         </div>
       </nav>
     )

@@ -7,23 +7,25 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import { Link } from "react-router-dom"
 import Navbar_ from './NavBar';
-import PaymentsContent from './PaymentsContent';
+import AllMembersContent from './AllMembersContent';
 
 type Props = {
     regDetails: ()=>void
-    changeSomething: (changeParam: string)=>void
+    members: any
+    getMember: (memberid: string)=>void
+    registrationDetails_: any
     configs_: any
-    viewDetails: (module: string, modleid: string)=>void
+    changeSomething: (changeParam: string)=>void
     getUser: (userid: string)=>void
   }
 
-const PaymentsBody: React.FC<Props> = ({getUser, viewDetails, changeSomething, regDetails, configs_}) => {
+const AllMembersBody: React.FC<Props> = ({getUser, changeSomething, regDetails, members, getMember, configs_, registrationDetails_}) => {
     return (
         <div className="main-panel">
             <Navbar_ getUser={getUser} regDetails={regDetails} />
-            <PaymentsContent viewDetails={viewDetails} changeSomething={changeSomething} regDetails={regDetails} configs_={configs_} />
+            <AllMembersContent changeSomething={changeSomething} getMember={getMember} members={members} regDetails={regDetails} registrationDetails_={registrationDetails_} configs_={configs_} />
             </div>
     )
 }
 
-export default PaymentsBody
+export default AllMembersBody

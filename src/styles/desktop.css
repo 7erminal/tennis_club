@@ -133,6 +133,15 @@
         height: 400px;
     }
 
+    .allMembersPic{
+        position: relative;
+        background: url('../../public/federerreflectsthursday.jpeg');
+        background-size:contain;
+        background-position: center;
+        width: 100%;
+        height: 400px;
+    }
+
     .sessionsPic{
         position: relative;
         background: url('../../public/ballsAndRackets.jpeg');
@@ -226,5 +235,12 @@
         background-size: cover;
         background-position: center;
       } */
+
+      .searchDropDown{
+        position: absolute;
+        top: 60px;
+        width: 70%;
+        right: 0;
+      }
 
 }

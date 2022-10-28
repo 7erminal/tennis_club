@@ -6,12 +6,13 @@ type Props = {
     regDetails: ()=>void
     configs_: any
     getConfigDetails_: ()=>void
+    getUser: (userid: string)=>void
   }
 
-const ConfigurationsBody: React.FC<Props> = ({regDetails, configs_, getConfigDetails_}) => {
+const ConfigurationsBody: React.FC<Props> = ({getUser, regDetails, configs_, getConfigDetails_}) => {
     return (
         <div className="main-panel">
-            <Navbar_ regDetails={regDetails} />
+            <Navbar_ getUser={getUser} regDetails={regDetails} />
             <ConfigurationsContent getConfigDetails_={getConfigDetails_} regDetails={regDetails} configs_={configs_} />
             </div>
     )

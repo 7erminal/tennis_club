@@ -11,13 +11,14 @@ type Props = {
     scheduledCoaching: any
     scheduledTraining: any
     viewDetails: (module: string, modleid: string)=>void
+    getUser: (userid: string)=>void
   }
 
-const SessionsPage: React.FC<Props> = ({games, viewDetails, scheduledCoaching, scheduledTraining, regDetails, changeSomething, configs_, members}) => {
+const SessionsPage: React.FC<Props> = ({getUser, games, viewDetails, scheduledCoaching, scheduledTraining, regDetails, changeSomething, configs_, members}) => {
     return (
         <div className='wrapper'>
             <Sidebar changeSomething={changeSomething}/>
-            <SessionsBody viewDetails={viewDetails} changeSomething={changeSomething} games={games} scheduledCoaching={scheduledCoaching} scheduledTraining={scheduledTraining} members={members} regDetails={regDetails} configs_={configs_} />
+            <SessionsBody getUser={getUser} viewDetails={viewDetails} changeSomething={changeSomething} games={games} scheduledCoaching={scheduledCoaching} scheduledTraining={scheduledTraining} members={members} regDetails={regDetails} configs_={configs_} />
         </div>
     )
 }

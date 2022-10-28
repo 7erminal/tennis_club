@@ -8,13 +8,15 @@ type Props = {
     changeSomething: (changeParam: string)=>void
     configs_: any
     selectedMemberDetails: any
+    registrationDetails_: any
+    getUser: (userid: string)=>void
   }
 
-const ViewMemberPage: React.FC<Props> = ({configs_, selectedMemberDetails, regDetails, changeSomething}) => {
+const ViewMemberPage: React.FC<Props> = ({getUser, registrationDetails_, configs_, selectedMemberDetails, regDetails, changeSomething}) => {
     return (
         <div className='wrapper'>
             <Sidebar changeSomething={changeSomething}/>
-            <ViewMemberBody selectedMemberDetails={selectedMemberDetails} regDetails={regDetails} changeSomething={changeSomething}/>
+            <ViewMemberBody getUser={getUser} registrationDetails_={registrationDetails_} configs_={configs_} selectedMemberDetails={selectedMemberDetails} regDetails={regDetails} changeSomething={changeSomething}/>
         </div>
     )
 }

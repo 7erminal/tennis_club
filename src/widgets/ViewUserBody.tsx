@@ -7,12 +7,13 @@ type Props = {
     changeSomething: (changeParam: string)=>void
     regDetails: ()=>void
     selectedUserDetails: any
+    getUser: (userid: string)=>void
   }
 
-const ViewUser: React.FC<Props> = ({selectedUserDetails, regDetails, changeSomething}) => {
+const ViewUser: React.FC<Props> = ({getUser, selectedUserDetails, regDetails, changeSomething}) => {
     return (
         <div className="main-panel">
-            <Navbar_ regDetails={regDetails}/>
+            <Navbar_ getUser={getUser} regDetails={regDetails}/>
             <Container className="view-member-body">
                 <Row style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'right', flexDirection: 'column', textAlign: 'right' }}>
                     <span>edit</span>

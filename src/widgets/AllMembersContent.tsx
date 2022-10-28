@@ -21,7 +21,7 @@ type Props = {
     changeSomething: (changeParam: string)=>void
   }
 
-const MembersContent: React.FC<Props> = ({changeSomething, registrationDetails_, regDetails, members, getMember, configs_}) => {
+const AllMembersContent: React.FC<Props> = ({changeSomething, registrationDetails_, regDetails, members, getMember, configs_}) => {
     const [showDetails, setShowDetails] = useState(false);
     const [detailsValidated, setDetailsValidated] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
@@ -56,10 +56,10 @@ const MembersContent: React.FC<Props> = ({changeSomething, registrationDetails_,
                 <Toast.Body>Details have been added successfully</Toast.Body>
                 </Toast>
             <AddMemberModals members={members} toggleShowSuccess={toggleShowSuccess} set_detailsValidated={set_detailsValidated} detailsValidated={detailsValidated} showDetails={showDetails} handleDetailsShow={handleDetailsShow} handleDetailsClose={handleDetailsClose} changeSomething={changeSomething} registrationDetails_={registrationDetails_} configs_={configs_}  />
-            <div className='dashboardPic'></div>
+            <div className='allMembersPic'></div>
             <div className='membersContentDiv'>
                 <div className='dashboardTableContent'>
-                    <Container className="add-member-button-pane">
+                    {/* <Container className="add-member-button-pane">
                         <Row>
                             <Col>
                                 <span onClick={showRegistrationModal} className='add-member-button'>
@@ -67,7 +67,7 @@ const MembersContent: React.FC<Props> = ({changeSomething, registrationDetails_,
                                 </span>
                             </Col>
                         </Row>
-                    </Container>
+                    </Container> */}
                     <Table striped bordered hover>
                         <thead>
                             <tr>
@@ -82,7 +82,7 @@ const MembersContent: React.FC<Props> = ({changeSomething, registrationDetails_,
                         </thead>
                         <tbody>
                             {
-                                members ? members.slice(0,20).map((member: any,i: number)=>{
+                                members ? members.map((member: any,i: number)=>{
                                     return <tr key={i}>
                                         <td>{i+1}</td>
                                         <td>{member.account_number}</td>
@@ -100,17 +100,10 @@ const MembersContent: React.FC<Props> = ({changeSomething, registrationDetails_,
                             }
                         </tbody>
                     </Table>
-                    <Container>
-                        <Row>
-                            <Col>
-                                <Link to='/all-members' className="btn btn-primary">View all</Link>
-                            </Col>
-                        </Row>
-                    </Container>
                 </div>
             </div>
         </div>
     )
 }
 
-export default MembersContent
+export default AllMembersContent

@@ -9,12 +9,13 @@ type Props = {
     changeSomething: (changeParam: string)=>void
     regDetails: ()=>void
     selectedCoachingDetails: any
+    getUser: (userid: string)=>void
   }
 
-const ViewCoachingBody: React.FC<Props> = ({selectedCoachingDetails, regDetails, changeSomething}) => {
+const ViewCoachingBody: React.FC<Props> = ({getUser, selectedCoachingDetails, regDetails, changeSomething}) => {
     return (
         <div className="main-panel">
-            <Navbar_ regDetails={regDetails}/>
+            <Navbar_ getUser={getUser} regDetails={regDetails}/>
             <Container className="view-member-body">
                 {/* <Row style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'right', flexDirection: 'column', textAlign: 'right' }}>
                     <span>edit</span>

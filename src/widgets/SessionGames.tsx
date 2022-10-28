@@ -72,7 +72,26 @@ const SessionsGames: React.FC<Props> = ({viewDetails, viewType_, changeSomething
                         </thead>
                         <tbody>
                             {
-                                games ? games.map((game: any, i: any)=>{
+                                games ? viewType_=='update' ? games.map((game: any, i: any)=>{
+                                    return <tr key={i}>
+                                        <td>{i+1}</td>
+                                        <td>{moment(game.start_time).format("YYYY-MM-DD HH:mm:ss")}</td>
+                                        <td>{game.game_type}</td>
+                                        <td>{game.match_type}</td>
+                                        <td>{game.opponent_1_first_name} {game.opponent_1_last_name} vs {game.opponent_2_first_name} {game.opponent_2_last_name}</td>
+                                        <td>{game.played == 'True' ? 'Played' : 'Pending'}</td>
+                                        {
+                                            viewType_ == 'update' ?
+                                            <td>
+                                                <Link className='btn btn-success btn-sm' to='/view-game-details' onClick={()=>viewDetails('game',game.id)}>
+                                                    View Details
+                                                </Link>
+                                            </td> :
+                                            ''
+                                        }
+                                    </tr>
+                                }) : 
+                                games.slice(0,5).map((game: any, i: any)=>{
                                     return <tr key={i}>
                                         <td>{i+1}</td>
                                         <td>{moment(game.start_time).format("YYYY-MM-DD HH:mm:ss")}</td>

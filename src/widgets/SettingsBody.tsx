@@ -21,7 +21,7 @@ type Props = {
 const SettingsBody: React.FC<Props> = ({users, getUser, regDetails, changeSomething, configs_}) => {
     return (
         <div className="main-panel">
-            <Navbar_ regDetails={regDetails}/>
+            <Navbar_ getUser={getUser} regDetails={regDetails}/>
             <SettingsTab getUser={getUser} users={users} configs_={configs_} regDetails={regDetails} changeSomething={changeSomething} />
             {/* <SettingsContent /> */}
             </div>

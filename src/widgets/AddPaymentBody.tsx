@@ -15,12 +15,13 @@ type Props = {
     configs_: any
     viewDetails: (module: string, modleid: string)=>void
     members: any
+    getUser: (userid: string)=>void
   }
 
-const AddPaymentBody: React.FC<Props> = ({viewDetails, members, changeSomething, regDetails, configs_}) => {
+const AddPaymentBody: React.FC<Props> = ({getUser, viewDetails, members, changeSomething, regDetails, configs_}) => {
     return (
         <div className="main-panel">
-            <Navbar_ regDetails={regDetails} />
+            <Navbar_ getUser={getUser} regDetails={regDetails} />
             <AddPaymentsContent members={members} viewDetails={viewDetails} changeSomething={changeSomething} regDetails={regDetails} configs_={configs_} />
         </div>
     )
