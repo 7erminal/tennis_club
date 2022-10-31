@@ -126,7 +126,32 @@ class Api {
 		return await res
 	}
 
-	// add member
+	// edit member
+	async edit_member(params){
+		console.log("what is being sent")
+
+		const config = {
+			method: 'post',
+			url: 'http://35.181.154.76:8000/api/updatemember/',
+			data: params,
+			// headers: {
+			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
+			// 	"Access-Control-Allow-Origin":"*",
+			// 	"accept": 'application/json',
+			// 	"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+			// }
+			headers: {
+				'content-type': 'multipart/form-data',
+				"accept": 'application/json',
+			}
+		}
+
+		const res = await axios(config)
+
+		return await res
+	}
+
+	// add payment
 	async add_payment(params){
 		console.log("what is being sent")
 

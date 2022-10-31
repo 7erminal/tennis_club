@@ -49,6 +49,40 @@ const RootComponent: React.FC = () => {
     const [selectedCoachingDetails, setSelectedCoachingDetails] = useState<Array<any>>([])
     const [selectedTrainingDetails, setSelectedTrainingDetails] = useState<Array<any>>([])
     
+    const [activeNav, setActiveNav] = useState("dashboard")
+    
+    const [essentials, setEssentials] = useState<any>()
+
+    useEffect(()=>{
+        setActiveNav("dashboard")
+
+        console.log("nav change")
+
+        const essential_ = {
+            e_members: members,
+            e_configs: configs,
+            e_games: games,
+            e_scheduledCoaching: scheduledCoaching,
+            e_scheduledTraining: scheduledTraining,
+            e_activeNav: activeNav
+        }
+
+        setEssentials(essential_)
+    },[])
+
+    useEffect(()=>{
+        const essential_ = {
+            e_members: members,
+            e_configs: configs,
+            e_games: games,
+            e_scheduledCoaching: scheduledCoaching,
+            e_scheduledTraining: scheduledTraining,
+            e_activeNav: activeNav
+        }
+
+        setEssentials(essential_)
+    },[activeNav])
+
     useEffect(()=>{
         new Api().getRegistrationDetails()
                 .then(response => {
@@ -210,7 +244,10 @@ const RootComponent: React.FC = () => {
     }
 
     const changeSomething = (changeParam: string):void => {
-        if(changeParam=="members"){
+        if(changeParam=="dashboard"){
+            setGetMembers(!getMembers)
+            setGetConfigs(!getConfigs)
+        } else if(changeParam=="members"){
             setGetMembers(!getMembers)
             setGetConfigs(!getConfigs)
         } else if (changeParam=="sessions"){
@@ -225,7 +262,12 @@ const RootComponent: React.FC = () => {
         } else if(changeParam=="users"){
             setGetUsers(!getUsers)
             setGetConfigs(!getConfigs)
+        } else if(changeParam=="sales"){
+            setGetUsers(!getUsers)
+            setGetConfigs(!getConfigs)
         }
+
+        setActiveNav(changeParam)
     }
 
     return (
@@ -233,21 +275,21 @@ const RootComponent: React.FC = () => {
             <Routes>
                 <Route path="*" element={<NotFoundPage />} />
                 <Route path={ROUTES.HOMEPAGE_ROUTE} element={<LoginPage />} />
-                <Route path={ROUTES.DASHBOARDPAGE_ROUTE} element={<DashboardPage getUser={getUser_} viewDetails={viewDetails_} changeSomething={changeSomething} regDetails={regDetails} games={games} members={members} configs_={configs} scheduledCoaching={scheduledCoaching} scheduledTraining={scheduledTraining} />} />
-                <Route path={ROUTES.SETTINGSPAGE_ROUTE} element={<SettingsPage getUser={getUser_} users={users} changeSomething={changeSomething} regDetails={regDetails} configs_={configs} />} />
-                <Route path={ROUTES.MEMBERS_ROUTE} element={<MembersPage getUser={getUser_} getMember={getMember_} changeSomething={changeSomething} regDetails={regDetails} members={members} registrationDetails_={registrationDetails} configs_={configs} />} />
-                <Route path={ROUTES.ALL_MEMBERS_ROUTE} element={<AllMembersPage getUser={getUser_} getMember={getMember_} changeSomething={changeSomething} regDetails={regDetails} members={members} registrationDetails_={registrationDetails} configs_={configs} />} />
-                <Route path={ROUTES.SESSIONS_ROUTE} element={<SessionsPage getUser={getUser_} viewDetails={viewDetails_} changeSomething={changeSomething} regDetails={regDetails} configs_={configs} members={members} games={games} scheduledCoaching={scheduledCoaching} scheduledTraining={scheduledTraining}/>} />
-                <Route path={ROUTES.EDITMEMBERS_ROUTE} element={<EditMembersPage getUser={getUser_} getMember={getMember_} selectedMemberDetails={selectedMemberDetails} members={members} changeSomething={changeSomething} registrationDetails_={registrationDetails} regDetails={regDetails} configs_={configs}/>} />
-                <Route path={ROUTES.CONFIGS_ROUTE} element={<ConfigurationsPage getUser={getUser_} getConfigDetails_={getConfigDetails_} changeSomething={changeSomething} regDetails={regDetails} configs_={configs}/>} />
-                <Route path={ROUTES.VIEW_MEMBER} element={<ViewMemberPage getUser={getUser_} selectedMemberDetails={selectedMemberDetails} changeSomething={changeSomething} regDetails={regDetails} configs_={configs} registrationDetails_={registrationDetails} />} />
-                <Route path={ROUTES.EDIT_MEMBER} element={<EditMemberPage getUser={getUser_} selectedMemberDetails={selectedMemberDetails} changeSomething={changeSomething} regDetails={regDetails} configs_={configs} registrationDetails_={registrationDetails}/>} />
-                <Route path={ROUTES.VIEW_USER} element={<ViewUserPage getUser={getUser_} selectedUserDetails={selectedUserDetails} changeSomething={changeSomething} regDetails={regDetails} configs_={configs}/>} />
-                <Route path={ROUTES.VIEW_GAME_DETAILS} element={<GameDetails getUser={getUser_} viewDetails={viewDetails_} selectedGameDetails={selectedGameDetails} changeSomething={changeSomething} regDetails={regDetails} configs_={configs}/>} />
-                <Route path={ROUTES.VIEW_COACHING_DETAILS} element={<CoachingDetails getUser={getUser_} viewDetails={viewDetails_} selectedCoachingDetails={selectedCoachingDetails} changeSomething={changeSomething} regDetails={regDetails} configs_={configs}/>} />
-                <Route path={ROUTES.VIEW_TRAINING_DETAILS} element={<TrainingDetails getUser={getUser_} viewDetails={viewDetails_} selectedTrainingDetails={selectedTrainingDetails} changeSomething={changeSomething} regDetails={regDetails} configs_={configs}/>} />
-                <Route path={ROUTES.PAYMENTS} element={<PaymentsPage getUser={getUser_} viewDetails={viewDetails_} changeSomething={changeSomething} regDetails={regDetails} configs_={configs}/>} />
-                <Route path={ROUTES.ADD_PAYMENT} element={<AddPaymentsPage getUser={getUser_} viewDetails={viewDetails_} changeSomething={changeSomething} regDetails={regDetails} configs_={configs} members={members}/>} />
+                <Route path={ROUTES.DASHBOARDPAGE_ROUTE} element={<DashboardPage essentials={essentials} getMember={getMember_} viewDetails={viewDetails_} changeSomething={changeSomething} regDetails={regDetails} games={games} members={members} configs_={configs} scheduledCoaching={scheduledCoaching} scheduledTraining={scheduledTraining} />} />
+                <Route path={ROUTES.SETTINGSPAGE_ROUTE} element={<SettingsPage essentials={essentials} getUser={getUser_} getMember={getMember_} users={users} changeSomething={changeSomething} regDetails={regDetails} configs_={configs} />} />
+                <Route path={ROUTES.MEMBERS_ROUTE} element={<MembersPage essentials={essentials} getUser={getUser_} getMember={getMember_} changeSomething={changeSomething} regDetails={regDetails} members={members} registrationDetails_={registrationDetails} configs_={configs} />} />
+                <Route path={ROUTES.ALL_MEMBERS_ROUTE} element={<AllMembersPage essentials={essentials} getUser={getUser_} getMember={getMember_} changeSomething={changeSomething} regDetails={regDetails} members={members} registrationDetails_={registrationDetails} configs_={configs} />} />
+                <Route path={ROUTES.SESSIONS_ROUTE} element={<SessionsPage essentials={essentials} getMember={getMember_} viewDetails={viewDetails_} changeSomething={changeSomething} regDetails={regDetails} configs_={configs} members={members} games={games} scheduledCoaching={scheduledCoaching} scheduledTraining={scheduledTraining}/>} />
+                <Route path={ROUTES.EDITMEMBERS_ROUTE} element={<EditMembersPage essentials={essentials} getUser={getUser_} getMember={getMember_} selectedMemberDetails={selectedMemberDetails} members={members} changeSomething={changeSomething} registrationDetails_={registrationDetails} regDetails={regDetails} configs_={configs}/>} />
+                <Route path={ROUTES.CONFIGS_ROUTE} element={<ConfigurationsPage essentials={essentials} getMember={getMember_} getConfigDetails_={getConfigDetails_} changeSomething={changeSomething} regDetails={regDetails} configs_={configs}/>} />
+                <Route path={ROUTES.VIEW_MEMBER} element={<ViewMemberPage essentials={essentials} getMember={getMember_} selectedMemberDetails={selectedMemberDetails} changeSomething={changeSomething} regDetails={regDetails} configs_={configs} registrationDetails_={registrationDetails} />} />
+                <Route path={ROUTES.EDIT_MEMBER} element={<EditMemberPage essentials={essentials} getMember={getMember_} selectedMemberDetails={selectedMemberDetails} changeSomething={changeSomething} regDetails={regDetails} configs_={configs} registrationDetails_={registrationDetails}/>} />
+                <Route path={ROUTES.VIEW_USER} element={<ViewUserPage essentials={essentials} getMember={getMember_} getUser={getUser_} selectedUserDetails={selectedUserDetails} changeSomething={changeSomething} regDetails={regDetails} configs_={configs}/>} />
+                <Route path={ROUTES.VIEW_GAME_DETAILS} element={<GameDetails essentials={essentials} getMember={getMember_} viewDetails={viewDetails_} selectedGameDetails={selectedGameDetails} changeSomething={changeSomething} regDetails={regDetails} configs_={configs}/>} />
+                <Route path={ROUTES.VIEW_COACHING_DETAILS} element={<CoachingDetails essentials={essentials} getMember={getMember_} viewDetails={viewDetails_} selectedCoachingDetails={selectedCoachingDetails} changeSomething={changeSomething} regDetails={regDetails} configs_={configs}/>} />
+                <Route path={ROUTES.VIEW_TRAINING_DETAILS} element={<TrainingDetails essentials={essentials} getMember={getMember_} viewDetails={viewDetails_} selectedTrainingDetails={selectedTrainingDetails} changeSomething={changeSomething} regDetails={regDetails} configs_={configs}/>} />
+                <Route path={ROUTES.PAYMENTS} element={<PaymentsPage essentials={essentials} getMember={getMember_} viewDetails={viewDetails_} changeSomething={changeSomething} regDetails={regDetails} configs_={configs}/>} />
+                <Route path={ROUTES.ADD_PAYMENT} element={<AddPaymentsPage essentials={essentials} getMember={getMember_} viewDetails={viewDetails_} changeSomething={changeSomething} regDetails={regDetails} configs_={configs} members={members}/>} />
             </Routes>
         </Router>
     )

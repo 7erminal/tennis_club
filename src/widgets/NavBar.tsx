@@ -8,10 +8,10 @@ import Api from '../resources/api'
 
 type Props = {
   regDetails: ()=>void
-  getUser: (userid: string)=>void
+  getMember: (memberid: string)=>void
 }
 
-const Navbar_: React.FC<Props> = ({regDetails, getUser}) => {
+const Navbar_: React.FC<Props> = ({regDetails, getMember}) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchResults, setSearchResults] = useState<Array<any>>([])
   const [showDropdown, setShowDropdown] = useState(false)
@@ -141,7 +141,7 @@ const Navbar_: React.FC<Props> = ({regDetails, getUser}) => {
               {
                 searchResults ? searchResults.map((result: any, i: any)=>{
                   return <ListGroup.Item action key={i}>
-                            <Link className='fill-all' to='/view-member' onClick={()=>getUser(result.id)}>
+                            <Link className='fill-all' to='/view-member' onClick={()=>getMember(result.id)}>
                                         
                             </Link>
                             {/* <span id='mname_list'>{result.username}</span>

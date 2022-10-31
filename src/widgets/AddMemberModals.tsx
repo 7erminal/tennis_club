@@ -618,63 +618,68 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
                     <Form onSubmit={submitForm}>
                         <Form.Group>
                             <Form.Label>Any heart problem?</Form.Label>
-                            <Form.Select aria-label="Default select example" name="hearProblem" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)}>
-                                <option value={0}>Select</option>
+                            <Form.Select aria-label="Default select example" name="hearProblem" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)} required>
+                                <option value="">Select</option>
                                 <option value={1}>Yes</option>
                                 <option value={0}>No</option>
                             </Form.Select>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>History of Heart Problem in the family?</Form.Label>
-                            <Form.Select aria-label="Default select example" name="heartProblemHistory" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)}>
-                                <option value={0}>Select</option>
+                            <Form.Select aria-label="Default select example" name="heartProblemHistory" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)} required>
+                                <option value="">Select</option>
                                 <option value={1}>Yes</option>
                                 <option value={0}>No</option>
                             </Form.Select>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Any respiratory problem?</Form.Label>
-                            <Form.Select aria-label="Default select example" name="respiratoryProblem" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)}>
-                                <option value={0}>Select</option>
+                            <Form.Select aria-label="Default select example" name="respiratoryProblem" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)} required>
+                                <option value="">Select</option>
                                 <option value={1}>Yes</option>
                                 <option value={0}>No</option>
                             </Form.Select>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Any history of breath shortness in the family?</Form.Label>
-                            <Form.Select aria-label="Default select example" name="breathShortnessHistory" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)}>
-                                <option value={0}>Select</option>
+                            <Form.Select aria-label="Default select example" name="breathShortnessHistory" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)} required>
+                                <option value="">Select</option>
                                 <option value={1}>Yes</option>
                                 <option value={0}>No</option>
                             </Form.Select>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Ever been adviced not to do strenous exercise?</Form.Label>
-                            <Form.Select aria-label="Default select example" name="allowedStrenousExercise" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)}>
-                                <option value={0}>Select</option>
+                            <Form.Select aria-label="Default select example" name="allowedStrenousExercise" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)} required>
+                                <option value="">Select</option>
                                 <option value={1}>Yes</option>
                                 <option value={0}>No</option>
                             </Form.Select>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Any bone or thigh injury?</Form.Label>
-                            <Form.Select aria-label="Default select example" name="boneInjury" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)}>
-                                <option value={0}>Select</option>
+                            <Form.Select aria-label="Default select example" name="boneInjury" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)} required>
+                                <option value="">Select</option>
                                 <option value={1}>Yes</option>
                                 <option value={0}>No</option>
                             </Form.Select>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Any Other medical conditions?</Form.Label>
-                            <Form.Select aria-label="Default select example" name="otherMedicalConditions" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)}>
-                                <option value={0}>Select</option>
+                            <Form.Select aria-label="Default select example" name="otherMedicalConditions" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)} required>
+                                <option value="">Select</option>
                                 <option value={1}>Yes</option>
                                 <option value={0}>No</option>
                             </Form.Select>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>What is this medical condition?</Form.Label>
-                            <Form.Control as="textarea" name="medical_condition" value={medicalConditionDescription} rows={2} />
+                            {
+                                otherMedicalConditions == true ?
+                                <Form.Control as="textarea" name="medical_condition" value={medicalConditionDescription} rows={2} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} />
+                                :
+                                <Form.Control as="textarea" name="medical_condition" value={medicalConditionDescription} rows={2} disabled />
+                            }
                         </Form.Group>
                         {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
                             <Form.Check type="checkbox" label="Check me out" />

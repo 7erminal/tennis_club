@@ -9,14 +9,15 @@ type Props = {
     configs_: any
     selectedMemberDetails: any
     registrationDetails_: any
-    getUser: (userid: string)=>void
+    getMember: (userid: string)=>void
+    essentials: any
   }
 
-const ViewMemberPage: React.FC<Props> = ({getUser, registrationDetails_, configs_, selectedMemberDetails, regDetails, changeSomething}) => {
+const ViewMemberPage: React.FC<Props> = ({essentials, getMember, registrationDetails_, configs_, selectedMemberDetails, regDetails, changeSomething}) => {
     return (
         <div className='wrapper'>
-            <Sidebar changeSomething={changeSomething}/>
-            <ViewMemberBody getUser={getUser} registrationDetails_={registrationDetails_} configs_={configs_} selectedMemberDetails={selectedMemberDetails} regDetails={regDetails} changeSomething={changeSomething}/>
+            <Sidebar essentials={essentials} changeSomething={changeSomething}/>
+            <ViewMemberBody getMember={getMember} registrationDetails_={registrationDetails_} configs_={configs_} selectedMemberDetails={selectedMemberDetails} regDetails={regDetails} changeSomething={changeSomething}/>
         </div>
     )
 }

@@ -11,14 +11,15 @@ type Props = {
     members: any
     configs_: any
     viewDetails: (module: string, modleid: string)=>void
-    getUser: (userid: string)=>void
+    getMember: (userid: string)=>void
+    essentials: any
   }
 
-const DashboardPage: React.FC<Props> = ({getUser, viewDetails, games, scheduledTraining, scheduledCoaching, members, configs_, regDetails, changeSomething}) => {
+const DashboardPage: React.FC<Props> = ({essentials, getMember, viewDetails, games, scheduledTraining, scheduledCoaching, members, configs_, regDetails, changeSomething}) => {
     return (
         <div className='wrapper'>
-            <Sidebar changeSomething={changeSomething} />
-            <DashboardBody getUser={getUser} viewDetails={viewDetails} regDetails={regDetails} scheduledCoaching={scheduledCoaching} scheduledTraining={scheduledTraining} changeSomething={changeSomething} games={games} members={members} configs_={configs_}  />
+            <Sidebar essentials={essentials} changeSomething={changeSomething} />
+            <DashboardBody getMember={getMember} viewDetails={viewDetails} regDetails={regDetails} scheduledCoaching={scheduledCoaching} scheduledTraining={scheduledTraining} changeSomething={changeSomething} games={games} members={members} configs_={configs_}  />
         </div>
     )
 }

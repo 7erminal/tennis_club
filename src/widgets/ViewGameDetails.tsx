@@ -16,13 +16,13 @@ type Props = {
     configs_: any
     viewDetails: (module: string, modleid: string)=>void
     selectedGameDetails: any
-    getUser: (userid: string)=>void
+    getMember: (memberid: string)=>void
   }
 
-const ViewGameDetails: React.FC<Props> = ({getUser, selectedGameDetails, viewDetails, changeSomething, regDetails, configs_}) => {
+const ViewGameDetails: React.FC<Props> = ({getMember, selectedGameDetails, viewDetails, changeSomething, regDetails, configs_}) => {
     return (
         <div className="main-panel">
-            <Navbar_ getUser={getUser} regDetails={regDetails} />
+            <Navbar_ getMember={getMember} regDetails={regDetails} />
             <Container className="view-member-body">
                 <Row style={{color: 'grey'}}>
                     <h6>{selectedGameDetails.game_tag}</h6>

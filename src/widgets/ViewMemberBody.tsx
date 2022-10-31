@@ -11,10 +11,10 @@ type Props = {
     selectedMemberDetails: any
     registrationDetails_: any
     configs_: any
-    getUser: (userid: string)=>void
+    getMember: (memberid: string)=>void
   }
 
-const ViewMemberBody: React.FC<Props> = ({getUser, registrationDetails_, configs_, selectedMemberDetails, regDetails, changeSomething}) => {
+const ViewMemberBody: React.FC<Props> = ({getMember, registrationDetails_, configs_, selectedMemberDetails, regDetails, changeSomething}) => {
     const [allowEdit, setAllowEdit] = useState(false)
 
     const toggleAllowEdit = () => {
@@ -26,7 +26,7 @@ const ViewMemberBody: React.FC<Props> = ({getUser, registrationDetails_, configs
     console.log(image_source)
     return (
         <div className="main-panel">
-            <Navbar_ getUser={getUser} regDetails={regDetails}/>
+            <Navbar_ getMember={getMember} regDetails={regDetails}/>
             {
                 allowEdit == true ?
                 <EditMemberBody toggleAllowEdit={toggleAllowEdit} configs_={configs_} registrationDetails_={registrationDetails_} selectedMemberDetails={selectedMemberDetails} regDetails={regDetails} changeSomething={changeSomething} />

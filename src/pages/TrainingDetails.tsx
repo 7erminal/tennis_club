@@ -9,14 +9,15 @@ type Props = {
     configs_: any
     viewDetails: (module: string, modleid: string)=>void
     selectedTrainingDetails: any
-    getUser: (userid: string)=>void
+    getMember: (userid: string)=>void
+    essentials: any
   }
 
-const TrainingDetails: React.FC<Props> = ({getUser, viewDetails, selectedTrainingDetails, regDetails, changeSomething, configs_}) => {
+const TrainingDetails: React.FC<Props> = ({essentials, getMember, viewDetails, selectedTrainingDetails, regDetails, changeSomething, configs_}) => {
     return (
         <div className='wrapper'>
-            <Sidebar changeSomething={changeSomething}/>
-            <ViewTrainingBody getUser={getUser} selectedTrainingDetails={selectedTrainingDetails} regDetails={regDetails} changeSomething={changeSomething} />
+            <Sidebar essentials={essentials} changeSomething={changeSomething}/>
+            <ViewTrainingBody getMember={getMember} selectedTrainingDetails={selectedTrainingDetails} regDetails={regDetails} changeSomething={changeSomething} />
         </div>
     )
 }

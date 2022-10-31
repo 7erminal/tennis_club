@@ -8,14 +8,15 @@ type Props = {
     configs_: any
     viewDetails: (module: string, modleid: string)=>void
     members: any
-    getUser: (userid: string)=>void
+    getMember: (userid: string)=>void
+    essentials: any
   }
 
-const AddPaymentsPage: React.FC<Props> = ({getUser, viewDetails, regDetails, changeSomething, configs_, members}) => {
+const AddPaymentsPage: React.FC<Props> = ({essentials, getMember, viewDetails, regDetails, changeSomething, configs_, members}) => {
     return (
         <div className='wrapper'>
-            <Sidebar changeSomething={changeSomething}/>
-            <AddPaymentBody getUser={getUser} members={members} viewDetails={viewDetails} changeSomething={changeSomething} regDetails={regDetails} configs_={configs_} />
+            <Sidebar essentials={essentials} changeSomething={changeSomething}/>
+            <AddPaymentBody getMember={getMember} members={members} viewDetails={viewDetails} changeSomething={changeSomething} regDetails={regDetails} configs_={configs_} />
         </div>
     )
 }
