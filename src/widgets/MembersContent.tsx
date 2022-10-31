@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
@@ -11,6 +11,7 @@ import Navbar_ from './NavBar';
 import { BsPlusCircle } from "react-icons/bs";
 import AddMemberModals from './AddMemberModals';
 import Toast from 'react-bootstrap/Toast';
+import ReactPaginate from 'react-paginate';
 
 type Props = {
     regDetails: ()=>void
@@ -25,8 +26,32 @@ const MembersContent: React.FC<Props> = ({changeSomething, registrationDetails_,
     const [showDetails, setShowDetails] = useState(false);
     const [detailsValidated, setDetailsValidated] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [currentItems, setCurrentItems] = useState([])
+    const [itemsPerPage, setItemsPerPage] = useState(20)
+
+    const [pageCount, setPageCount] = useState(0);
+    // Here we use item offsets; we could also use page offsets
+    // following the API or data you're working with.
+    const [itemOffset, setItemOffset] = useState(0);
 
     const toggleShowSuccess = () => setShowSuccess(!showSuccess);
+
+    useEffect(() => {
+        // Fetch items from another resources.
+        const endOffset = itemOffset + itemsPerPage;
+        console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+        setCurrentItems(members.slice(itemOffset, endOffset));
+        setPageCount(Math.ceil(members.length / itemsPerPage));
+      }, [itemOffset, itemsPerPage]);
+
+    // Invoke when user click to request another page.
+    const handlePageClick = (event: { selected: number; }) => {
+        const newOffset = (event.selected * itemsPerPage) % members.length;
+        console.log(
+        `User requested page number ${event.selected}, which is offset ${newOffset}`
+        );
+        setItemOffset(newOffset);
+    };
 
     const showRegistrationModal = () => {
         regDetails()
@@ -82,7 +107,7 @@ const MembersContent: React.FC<Props> = ({changeSomething, registrationDetails_,
                         </thead>
                         <tbody>
                             {
-                                members ? members.slice(0,20).map((member: any,i: number)=>{
+                                currentItems ? currentItems.map((member: any,i: number)=>{
                                     return <tr key={i}>
                                         <td>{i+1}</td>
                                         <td>{member.account_number}</td>
@@ -100,13 +125,24 @@ const MembersContent: React.FC<Props> = ({changeSomething, registrationDetails_,
                             }
                         </tbody>
                     </Table>
-                    <Container>
+                    <ReactPaginate
+                                    breakLabel="..."
+                                    nextLabel="next >"
+                                    onPageChange={handlePageClick}
+                                    pageRangeDisplayed={5}
+                                    pageCount={pageCount}
+                                    previousLabel="< previous"
+                                    // renderOnZeroPageCount={null}
+                                    containerClassName="pagination"
+                                    activeClassName="active"
+                                  />
+                    {/* <Container>
                         <Row>
                             <Col>
                                 <Link to='/all-members' className="btn btn-primary">View all</Link>
                             </Col>
                         </Row>
-                    </Container>
+                    </Container> */}
                 </div>
             </div>
         </div>

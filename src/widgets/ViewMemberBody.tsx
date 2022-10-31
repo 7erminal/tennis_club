@@ -4,6 +4,7 @@ import Navbar_ from './NavBar';
 import ListGroup from 'react-bootstrap/ListGroup';
 import EditMemberBody from './EditMemberBody';
 import { AnyAaaaRecord } from 'dns';
+import '../styles/paginationRow.css'
 
 type Props = {
     changeSomething: (changeParam: string)=>void
