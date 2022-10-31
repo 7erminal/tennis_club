@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.731dae3c.css",
-    "main.js": "./static/js/main.9e684a54.js",
+    "main.js": "./static/js/main.6291b823.js",
     "static/media/Tennis-Wallpaper.jpg": "./static/media/Tennis-Wallpaper.5c8be1443501c4e82ab3.jpg",
     "static/media/federerreflectsthursday.jpeg": "./static/media/federerreflectsthursday.aefd68321f9cb98119d7.jpeg",
     "static/media/ballsAndRackets.jpeg": "./static/media/ballsAndRackets.08f69b32c27022b69ff6.jpeg",
@@ -14,10 +14,10 @@
     "static/media/nucleo-icons.woff2": "./static/media/nucleo-icons.ec16bc4cc4526801004d.woff2",
     "index.html": "./index.html",
     "main.731dae3c.css.map": "./static/css/main.731dae3c.css.map",
-    "main.9e684a54.js.map": "./static/js/main.9e684a54.js.map"
+    "main.6291b823.js.map": "./static/js/main.6291b823.js.map"
   },
   "entrypoints": [
     "static/css/main.731dae3c.css",
-    "static/js/main.9e684a54.js"
+    "static/js/main.6291b823.js"
   ]
 }
