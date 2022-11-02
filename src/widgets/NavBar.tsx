@@ -111,8 +111,16 @@ const Navbar_: React.FC<Props> = ({regDetails, getMember}) => {
                   </p>
                 </a>
               </li>
+              <li className="nav-item">
+                <Link to="/settings" onClick={regDetails} className="nav-link btn-rotate">
+                  <i className="nc-icon nc-settings-gear-65"></i>
+                  <p>
+                    <span className="d-lg-none d-md-block">Account</span>
+                  </p>
+                </Link>
+              </li>
               <li className="nav-item btn-rotate dropdown">
-                <NavDropdown title={navDropdownTitle} id="basic-nav-dropdown">
+              <NavDropdown title={navDropdownTitle} id="basic-nav-dropdown">
                     {/* <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">
                         Another action
@@ -122,15 +130,7 @@ const Navbar_: React.FC<Props> = ({regDetails, getMember}) => {
                     <NavDropdown.Item href="#action/3.4">
                         <Link to='/'>Log out</Link>
                     </NavDropdown.Item>
-            </NavDropdown>
-              </li>
-              <li className="nav-item">
-                <Link to="/settings" onClick={regDetails} className="nav-link btn-rotate">
-                  <i className="nc-icon nc-settings-gear-65"></i>
-                  <p>
-                    <span className="d-lg-none d-md-block">Account</span>
-                  </p>
-                </Link>
+              </NavDropdown>
               </li>
             </ul>
           </div>

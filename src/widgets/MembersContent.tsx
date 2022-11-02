@@ -20,14 +20,16 @@ type Props = {
     registrationDetails_: any
     configs_: any
     changeSomething: (changeParam: string)=>void
+    selectedMemberDetails: any
   }
 
-const MembersContent: React.FC<Props> = ({changeSomething, registrationDetails_, regDetails, members, getMember, configs_}) => {
+const MembersContent: React.FC<Props> = ({selectedMemberDetails, changeSomething, registrationDetails_, regDetails, members, getMember, configs_}) => {
     const [showDetails, setShowDetails] = useState(false);
+    const [showPaymentUpdate, setShowPaymentUpdate] = useState(false);
     const [detailsValidated, setDetailsValidated] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
     const [currentItems, setCurrentItems] = useState([])
-    const [itemsPerPage, setItemsPerPage] = useState(20)
+    const [itemsPerPage, setItemsPerPage] = useState(10)
 
     const [pageCount, setPageCount] = useState(0);
     // Here we use item offsets; we could also use page offsets
@@ -63,8 +65,16 @@ const MembersContent: React.FC<Props> = ({changeSomething, registrationDetails_,
         setDetailsValidated(true)
     }
 
+    const showRenewDetailsModal = (memberid: string) =>{
+        handlePaymentUpdateShow()
+        getMember(memberid)
+    }
+
     const handleDetailsClose = () => setShowDetails(false);
     const handleDetailsShow = () => setShowDetails(true);
+
+    const handlePaymentUpdateClose = () => setShowPaymentUpdate(false);
+    const handlePaymentUpdateShow = () => setShowPaymentUpdate(true);
 
     return (
         <div className="contentCustom">
@@ -80,7 +90,7 @@ const MembersContent: React.FC<Props> = ({changeSomething, registrationDetails_,
                 </Toast.Header>
                 <Toast.Body>Details have been added successfully</Toast.Body>
                 </Toast>
-            <AddMemberModals members={members} toggleShowSuccess={toggleShowSuccess} set_detailsValidated={set_detailsValidated} detailsValidated={detailsValidated} showDetails={showDetails} handleDetailsShow={handleDetailsShow} handleDetailsClose={handleDetailsClose} changeSomething={changeSomething} registrationDetails_={registrationDetails_} configs_={configs_}  />
+            <AddMemberModals selectedMemberDetails={selectedMemberDetails} handlePaymentUpdateClose={handlePaymentUpdateClose} showPaymentUpdate={showPaymentUpdate} members={members} toggleShowSuccess={toggleShowSuccess} set_detailsValidated={set_detailsValidated} detailsValidated={detailsValidated} showDetails={showDetails} handleDetailsShow={handleDetailsShow} handleDetailsClose={handleDetailsClose} changeSomething={changeSomething} registrationDetails_={registrationDetails_} configs_={configs_}  />
             <div className='dashboardPic'></div>
             <div className='membersContentDiv'>
                 <div className='dashboardTableContent'>
@@ -119,6 +129,9 @@ const MembersContent: React.FC<Props> = ({changeSomething, registrationDetails_,
                                             <Link className='btn btn-success btn-sm' to='/view-member' onClick={()=>getMember(member.id)}>
                                                 View
                                             </Link>
+                                            <Button className='mx-2 btn btn-info btn-sm' type="button" onClick={()=>showRenewDetailsModal(member.id)}>
+                                                Renew
+                                            </Button>
                                         </td>
                                     </tr>
                                 }) : <tr></tr>

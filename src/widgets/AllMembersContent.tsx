@@ -19,12 +19,14 @@ type Props = {
     registrationDetails_: any
     configs_: any
     changeSomething: (changeParam: string)=>void
+    selectedMemberDetails: any
   }
 
-const AllMembersContent: React.FC<Props> = ({changeSomething, registrationDetails_, regDetails, members, getMember, configs_}) => {
+const AllMembersContent: React.FC<Props> = ({selectedMemberDetails, changeSomething, registrationDetails_, regDetails, members, getMember, configs_}) => {
     const [showDetails, setShowDetails] = useState(false);
     const [detailsValidated, setDetailsValidated] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [showPaymentUpdate, setShowPaymentUpdate] = useState(false);
 
     const toggleShowSuccess = () => setShowSuccess(!showSuccess);
 
@@ -41,6 +43,9 @@ const AllMembersContent: React.FC<Props> = ({changeSomething, registrationDetail
     const handleDetailsClose = () => setShowDetails(false);
     const handleDetailsShow = () => setShowDetails(true);
 
+    const handlePaymentUpdateClose = () => setShowPaymentUpdate(false);
+    const handlePaymentUpdateShow = () => setShowPaymentUpdate(true);
+
     return (
         <div className="contentCustom">
             <Toast show={showSuccess} onClose={toggleShowSuccess}>
@@ -55,7 +60,7 @@ const AllMembersContent: React.FC<Props> = ({changeSomething, registrationDetail
                 </Toast.Header>
                 <Toast.Body>Details have been added successfully</Toast.Body>
                 </Toast>
-            <AddMemberModals members={members} toggleShowSuccess={toggleShowSuccess} set_detailsValidated={set_detailsValidated} detailsValidated={detailsValidated} showDetails={showDetails} handleDetailsShow={handleDetailsShow} handleDetailsClose={handleDetailsClose} changeSomething={changeSomething} registrationDetails_={registrationDetails_} configs_={configs_}  />
+            <AddMemberModals selectedMemberDetails={selectedMemberDetails} handlePaymentUpdateClose={handlePaymentUpdateClose} showPaymentUpdate={showPaymentUpdate} members={members} toggleShowSuccess={toggleShowSuccess} set_detailsValidated={set_detailsValidated} detailsValidated={detailsValidated} showDetails={showDetails} handleDetailsShow={handleDetailsShow} handleDetailsClose={handleDetailsClose} changeSomething={changeSomething} registrationDetails_={registrationDetails_} configs_={configs_}  />
             <div className='allMembersPic'></div>
             <div className='membersContentDiv'>
                 <div className='dashboardTableContent'>

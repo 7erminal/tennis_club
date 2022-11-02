@@ -17,13 +17,14 @@ type Props = {
     configs_: any
     changeSomething: (changeParam: string)=>void
     getUser: (userid: string)=>void
+    selectedMemberDetails: any
   }
 
-const MembersBody: React.FC<Props> = ({getUser, changeSomething, regDetails, members, getMember, configs_, registrationDetails_}) => {
+const MembersBody: React.FC<Props> = ({selectedMemberDetails, getUser, changeSomething, regDetails, members, getMember, configs_, registrationDetails_}) => {
     return (
         <div className="main-panel">
             <Navbar_ getMember={getMember} regDetails={regDetails} />
-            <MembersContent changeSomething={changeSomething} getMember={getMember} members={members} regDetails={regDetails} registrationDetails_={registrationDetails_} configs_={configs_} />
+            <MembersContent selectedMemberDetails={selectedMemberDetails} changeSomething={changeSomething} getMember={getMember} members={members} regDetails={regDetails} registrationDetails_={registrationDetails_} configs_={configs_} />
             </div>
     )
 }

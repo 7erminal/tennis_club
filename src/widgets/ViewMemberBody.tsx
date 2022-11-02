@@ -56,13 +56,22 @@ const ViewMemberBody: React.FC<Props> = ({getMember, registrationDetails_, confi
                 </Row>
                 <Row style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                     <Col md={8} sm={12} xs={12}>
+                        <h6>Information</h6>
                         <ListGroup>
                             <ListGroup.Item><b>Mobile Number: </b>{selectedMemberDetails.mobile_number}</ListGroup.Item>
                             <ListGroup.Item><b>Email: </b>{selectedMemberDetails.email}</ListGroup.Item>
+                            <ListGroup.Item><b>Emergency Contact Name: </b>{selectedMemberDetails.emergency_contact_name}</ListGroup.Item>
+                            <ListGroup.Item><b>Emergency Contact Number: </b>{selectedMemberDetails.emergency_contact_number}</ListGroup.Item>
+                            <ListGroup.Item><b>Emergency Contact Address: </b>{selectedMemberDetails.emergency_contact_address}</ListGroup.Item>
+                        </ListGroup>
+
+                        <ListGroup className="my-2">
                             <ListGroup.Item><b>Plan: </b>{selectedMemberDetails.plan}</ListGroup.Item>
                             <ListGroup.Item><b>Preferred Game type: </b>{selectedMemberDetails.game_type_name}</ListGroup.Item>
                             <ListGroup.Item><b>Level: </b>{selectedMemberDetails.level_name}</ListGroup.Item>
                             <ListGroup.Item><b>Preferred time of play: </b>{selectedMemberDetails.time_of_play}</ListGroup.Item>
+                            <ListGroup.Item><b>Subscription Start date: </b>{selectedMemberDetails.subscription_start_date}</ListGroup.Item>
+                            <ListGroup.Item><b>Subscription End date: </b>{selectedMemberDetails.subscription_end_date}</ListGroup.Item>
                         </ListGroup>
                         <hr/>
                         <h6>Medical History</h6>
@@ -73,6 +82,14 @@ const ViewMemberBody: React.FC<Props> = ({getMember, registrationDetails_, confi
                             <ListGroup.Item><b>Advised not to do any strenous exercise: </b>{selectedMemberDetails.strenous_exercise_advice == null ? 'No' : selectedMemberDetails.strenous_exercise_advice == 'False' ? 'No' : 'Yes'}</ListGroup.Item>
                             <ListGroup.Item><b>Bone or joint injury: </b>{selectedMemberDetails.bone_or_joint_injury == null ? 'No' : selectedMemberDetails.bone_or_joint_injury == 'False' ? 'No' : 'Yes'}</ListGroup.Item>
                             <ListGroup.Item><b>Any medical condition that can hinder playing tennis: </b>{selectedMemberDetails.tennis_preventing_injury == null ? 'No' : selectedMemberDetails.tennis_preventing_injury == 'False' ? 'No' : 'Yes'}</ListGroup.Item>
+                        </ListGroup>
+                        <hr/>
+                        <h6>Payment Details</h6>
+                        <ListGroup className="my-2">
+                            <ListGroup.Item><b>Amount charged: </b>{selectedMemberDetails.amount}</ListGroup.Item>
+                            <ListGroup.Item><b>Amount paid: </b>{selectedMemberDetails.amount_paid}</ListGroup.Item>
+                            <ListGroup.Item><b>Sender: </b>{selectedMemberDetails.sender}</ListGroup.Item>
+                            <ListGroup.Item><b>Receiver: </b>{selectedMemberDetails.receiver}</ListGroup.Item>
                         </ListGroup>
                     </Col>
                 </Row>

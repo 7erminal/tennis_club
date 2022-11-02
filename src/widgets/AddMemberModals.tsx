@@ -1,4 +1,5 @@
-import React, {useState, ChangeEvent} from 'react'
+import moment from 'moment'
+import React, {useState, ChangeEvent, useEffect } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
@@ -7,8 +8,6 @@ import Col from 'react-bootstrap/Col';
 import Api from './../resources/api'
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from "react-router-dom"
-
-import moment from 'moment';
 
 type Props = {
     // regDetails: ()=>void
@@ -22,9 +21,12 @@ type Props = {
     set_detailsValidated: ()=>void
     toggleShowSuccess: ()=>void
     members: any
+    showPaymentUpdate: boolean
+    handlePaymentUpdateClose: ()=>void
+    selectedMemberDetails: any
   }
 
-const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detailsValidated, detailsValidated, showDetails, handleDetailsShow, handleDetailsClose, changeSomething, configs_, registrationDetails_}) => {
+const AddMemberModals: React.FC<Props> = ({selectedMemberDetails, handlePaymentUpdateClose, members, showPaymentUpdate, toggleShowSuccess, set_detailsValidated, detailsValidated, showDetails, handleDetailsShow, handleDetailsClose, changeSomething, configs_, registrationDetails_}) => {
     const [surname, setSurname] = useState('')
     const [firstname, setFirstname] = useState('')
     const [othernames, setOthernames] = useState('')
@@ -56,6 +58,8 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
     const [sender, setSender] = useState('')
     const [amount, setAmount] = useState('')
     const [amountPaid, setAmountPaid] = useState('')
+    const [subscriptionStartDate, setSubscriptionStartDate] = useState(moment(new Date()).format('L'))
+    const [subscriptionDuration, setSubscriptionDuration] = useState('')
 
     const [picture, setPicture] = useState<any>(null);
     const [imgData, setImgData] = useState<any>(null);
@@ -67,6 +71,11 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
     const [preferencesValidated, setPreferencesValidated] = useState(false)
 
     const navigate = useNavigate();
+
+    // useEffect(()=>{
+    //     setReceiver(selectedMemberDetails.id)
+    //     setPlan(selectedMemberDetails.plan_id)
+    // },[])
 
     const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		console.log(e.target.value)
@@ -133,6 +142,9 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
             case "sender":
                 setSender(e.target.value)
                 break;
+            case "subscription_date":
+                setSubscriptionStartDate(e.target.value)
+                break;
 			default:
 				return null;
 
@@ -197,6 +209,9 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
                 break;
             case "receiver":
                 setReceiver(e.target.value)
+                break;
+            case "duration":
+                setSubscriptionDuration(e.target.value)
                 break;
 			default:
 				return null
@@ -277,7 +292,6 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
                 setEmail('')
                 setMobilenumber('')
                 setOthernames('')
-                setPlan('')
                 setSelectAccount(false)
                 setResidentialaddress('')
                 setGender('n')
@@ -289,12 +303,11 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
 
                 handleMedicalHistoryClose()
                 toggleShowSuccess()
-
-                // navigate('/add-payment')
+                handlePaymentModeShow()
 
                 setSavedUser(response.data)
 
-                handlePaymentModeShow()
+                // navigate('/add-payment')
             }
 
         }).catch(error => {
@@ -303,37 +316,64 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
         })
     }
 
+
+
     const submitPayment = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        console.log("payment submitted")
+        let s_plan = plan
+        let s_receiver = receiver
+
+        console.log("Saved user received")
+        console.log(savedUser)
+
+        savedUser!== 'undefined' && savedUser.length > 0 ? s_plan = plan : plan == '' || plan == 'undefined' || plan == null ? s_plan = selectedMemberDetails.plan_id : s_plan = plan 
+        savedUser!== 'undefined' && savedUser.length > 0 ? s_receiver = savedUser.id : receiver == '' || receiver == 'undefined' || receiver == null ? s_receiver = selectedMemberDetails.id : s_receiver = receiver 
+        
+        savedUser!== 'undefined' && savedUser.length > 0 ?  console.log("passed") : ''
+
+        console.log("payment data submitted ... ")
+        console.log(savedUser.id)
+        console.log(s_receiver)
+        console.log(savedUser.length)
+        console.log(plan)
         const params = {
-            payment_for: savedUser ? savedUser.id : '0',
+            payment_for: s_receiver,
             sender: sender,
-            receiver: receiver,
+            receiver: s_receiver,
             amount: amount,
             amount_paid: amountPaid,
             mode_of_payment: modeOfPayment,
+            subscription_start_date: subscriptionStartDate,
+            subscription_duration: subscriptionDuration,
+            plan: s_plan, 
         }
 
-        new Api().add_payment(params).then(response=>{
-            console.log("Getting data")
-            console.log(response)
-            console.log(response.status)
+        console.log(params)
+        console.log(selectedMemberDetails)
 
-            if(response.status == 202){
-                toggleShowSuccess()
+        // new Api().add_payment(params).then(response=>{
+        //     console.log("Getting data")
+        //     console.log(response)
+        //     console.log(response.status)
 
-                // navigate('/add-payment')
+        //     if(response.status == 202){
+        //         toggleShowSuccess()
+        //         setPlan('')
+        //         setAmount('')
+        //         setSubscriptionStartDate(moment(new Date()).format('L'))
 
+        //         // navigate('/add-payment')
 
-                handlePaymentModeClose()
-            }
+        //         setSavedUser([])
+        //         handlePaymentModeClose()
+        //         setReceiver('')
+        //     }
 
-        }).catch(error => {
-            console.log("Error returned is ... ")
-            console.log(error)
-        })
+        // }).catch(error => {
+        //     console.log("Error returned is ... ")
+        //     console.log(error)
+        // })
     }
 
     const goToPreferences = (event: React.FormEvent<HTMLFormElement>) => {
@@ -370,6 +410,11 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
           } else {
             setPreferencesValidated(true);
           }
+    }
+
+    const proceedToPayment = () => {
+        handlePaymentUpdateClose()
+        handlePaymentModeShow()
     }
 
     const handlePreferencesClose = () => setShowPreferences(false);
@@ -693,7 +738,7 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
         </Modal.Body>
       </Modal>
 
-      <Modal show={showPaymentMode} onHide={handlePaymentModeClose}>
+      <Modal show={showPaymentMode} onHide={handlePaymentModeClose} backdrop="static" centered>
         <Modal.Header closeButton>
             <Modal.Title>Select Mode of Payment</Modal.Title>
         </Modal.Header>
@@ -707,14 +752,27 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
                 {
                     modeOfPayment == 'cash' ?
                     <>
-                    <Form.Select className="my-4" aria-label="Default select example" name="receiver" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)}>
-                        <option>Paid by</option>
-                        {
-                            members ? members.map((member: any, i: number)=>{
-                                return <option key={i} value={member.id}>{member.first_name} {member.last_name}</option>
-                            }) : ''
-                        }
-                    </Form.Select>
+                    <Form.Group className="my-3" >
+                        <Form.Select aria-label="Default select example" name="receiver" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)}>
+                            <option value={savedUser.id ? savedUser.id : receiver}>{savedUser.first_name ? savedUser.first_name : selectedMemberDetails.first_name} {savedUser.last_name ? savedUser.last_name : selectedMemberDetails.last_name}</option>
+                        </Form.Select>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Duration</Form.Label>
+                            <Form.Select aria-label="Default select example" name="duration" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)} required>
+                                <option value="">Select duration</option>
+                                <option value={1}>1 Month</option>
+                                <option value={2}>2 Months</option>
+                                <option value={3}>3 Months</option>
+                                <option value={4}>4 Months</option>
+                                <option value={5}>5 Months</option>
+                                <option value={6}>6 Months</option>
+                                <option value={12}>1 Year</option>
+                                <option value={24}>2 Years</option>
+                                <option value={36}>3 Years</option>
+                                <option value={48}>4 Years</option>
+                            </Form.Select>
+                        </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Charge</Form.Label>
                         <Form.Control value={amount} type="text" placeholder="Enter cost" name="cost" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} />
@@ -725,7 +783,15 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Amount paid</Form.Label>
-                        <Form.Control value={amountPaid} type="text" placeholder="Enter Other names" name="amount_paid" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} />
+                        <Form.Control value={amountPaid} type="text" placeholder="Enter amount" name="amount_paid" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} />
+                        {/* <Form.Text className="text-muted">
+                            We will never share your email with anyone else.
+                        </Form.Text> */}
+                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Subscription Start Date</Form.Label>
+                        <Form.Control value={subscriptionStartDate} type="date" placeholder="Enter subscription start date" name="subscription_date" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} />
                         {/* <Form.Text className="text-muted">
                             We will never share your email with anyone else.
                         </Form.Text> */}
@@ -734,6 +800,22 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
                     <Button className="btn btn-primary" type="submit">Submit</Button>
                     </> : modeOfPayment == 'momo' ?
                         <>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Duration</Form.Label>
+                            <Form.Select aria-label="Default select example" name="duration" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)} required>
+                                <option value="">Select duration</option>
+                                <option value={1}>1 Month</option>
+                                <option value={2}>2 Months</option>
+                                <option value={3}>3 Months</option>
+                                <option value={4}>4 Months</option>
+                                <option value={5}>5 Months</option>
+                                <option value={6}>6 Months</option>
+                                <option value={12}>1 Year</option>
+                                <option value={24}>2 Years</option>
+                                <option value={36}>3 Years</option>
+                                <option value={48}>4 Years</option>
+                            </Form.Select>
+                        </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Charge</Form.Label>
                             <Form.Control value={amount} type="text" placeholder="Enter charge" name="cost" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} />
@@ -752,15 +834,22 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Paid by</Form.Label>
-                            <Form.Control value={receiver} type="text" placeholder="Receiver" name="receiver" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} />
+                            <Form.Select aria-label="Default select example" name="receiver" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)}>
+                                <option value={savedUser.id ? savedUser.id : receiver}>{selectedMemberDetails.first_name} {selectedMemberDetails.last_name}</option>
+                            </Form.Select>
+                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Amount Paid</Form.Label>
+                            <Form.Control value={amountPaid} type="text" placeholder="Amount paid" name="amount_paid" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} />
                             {/* <Form.Text className="text-muted">
                                 We will never share your email with anyone else.
                             </Form.Text> */}
                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Amount Paid</Form.Label>
-                            <Form.Control value={amountPaid} type="text" placeholder="Amount paid" name="amount_paid" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} />
+                            <Form.Label>Subscription Start Date</Form.Label>
+                            <Form.Control value={subscriptionStartDate} type="date" placeholder="Enter subscription start date" name="subscription_date" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} />
                             {/* <Form.Text className="text-muted">
                                 We will never share your email with anyone else.
                             </Form.Text> */}
@@ -772,6 +861,46 @@ const AddMemberModals: React.FC<Props> = ({members, toggleShowSuccess, set_detai
                 }
             </Form>
         </Modal.Body>
+    </Modal>
+
+    <Modal
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+      show={showPaymentUpdate}
+      onHide={handlePaymentUpdateClose}
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Update Subscription
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <h5>Name</h5>
+        <p>
+            {selectedMemberDetails.first_name} {selectedMemberDetails.last_name}
+        </p>
+        <h5>Account Number</h5>
+        <p>
+        {selectedMemberDetails.account_number}
+        </p>
+        <h5>Date Joined</h5>
+        <p>
+            {moment(selectedMemberDetails.created_at).format('DD-MM-YYYY')}
+        </p>
+        <h5>Current Membership start date</h5>
+        <p>
+            {selectedMemberDetails.subscription_start_date}
+        </p>
+        <h5>Current Membership end date</h5>
+        <p>
+            {selectedMemberDetails.subscription_end_date}
+        </p>
+        <Button type="button" className="btn btn-info" onClick={proceedToPayment}>Proceed</Button>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={handlePaymentUpdateClose}>Close</Button>
+      </Modal.Footer>
     </Modal>
     </>)
 }
