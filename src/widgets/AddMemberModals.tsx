@@ -58,7 +58,7 @@ const AddMemberModals: React.FC<Props> = ({selectedMemberDetails, handlePaymentU
     const [sender, setSender] = useState('')
     const [amount, setAmount] = useState('')
     const [amountPaid, setAmountPaid] = useState('')
-    const [subscriptionStartDate, setSubscriptionStartDate] = useState(moment(new Date()).format('L'))
+    const [subscriptionStartDate, setSubscriptionStartDate] = useState(moment(new Date()).format('YYYY-MM-DD'))
     const [subscriptionDuration, setSubscriptionDuration] = useState('')
 
     const [picture, setPicture] = useState<any>(null);
@@ -175,7 +175,7 @@ const AddMemberModals: React.FC<Props> = ({selectedMemberDetails, handlePaymentU
             case "timeofplay":
                 setTimeofplay(e.target.value)
                 break;
-            case "hearProblem":
+            case "heartProblem":
                 trueChecker = (e.target.value === '1')
                 setHeartProblem(trueChecker)
                 break;
@@ -298,6 +298,14 @@ const AddMemberModals: React.FC<Props> = ({selectedMemberDetails, handlePaymentU
                 setGametype('')
                 setTimeofplay('')
                 setLevel('')
+                setHeartProblem(false)
+                setHeartProblemHistory(false)
+                setRespiratoryProblem(false)
+                setBreathShortnessHistory(false)
+                setAllowedStrenousExercise(false)
+                setBoneInjury(false)
+                setOtherMedicalConditions(false)
+                setPicture(null)
 
                 changeSomething('members')
 
@@ -305,6 +313,7 @@ const AddMemberModals: React.FC<Props> = ({selectedMemberDetails, handlePaymentU
                 toggleShowSuccess()
                 handlePaymentModeShow()
 
+                setReceiver(response.data.id)
                 setSavedUser(response.data)
 
                 // navigate('/add-payment')
@@ -352,28 +361,28 @@ const AddMemberModals: React.FC<Props> = ({selectedMemberDetails, handlePaymentU
         console.log(params)
         console.log(selectedMemberDetails)
 
-        // new Api().add_payment(params).then(response=>{
-        //     console.log("Getting data")
-        //     console.log(response)
-        //     console.log(response.status)
+        new Api().add_payment(params).then(response=>{
+            console.log("Getting data")
+            console.log(response)
+            console.log(response.status)
 
-        //     if(response.status == 202){
-        //         toggleShowSuccess()
-        //         setPlan('')
-        //         setAmount('')
-        //         setSubscriptionStartDate(moment(new Date()).format('L'))
+            if(response.status == 202){
+                toggleShowSuccess()
+                setPlan('')
+                setAmount('')
+                setSubscriptionStartDate(moment(new Date()).format('YYYY-MM-DD'))
 
-        //         // navigate('/add-payment')
+                // navigate('/add-payment')
 
-        //         setSavedUser([])
-        //         handlePaymentModeClose()
-        //         setReceiver('')
-        //     }
+                setSavedUser([])
+                handlePaymentModeClose()
+                setReceiver('')
+            }
 
-        // }).catch(error => {
-        //     console.log("Error returned is ... ")
-        //     console.log(error)
-        // })
+        }).catch(error => {
+            console.log("Error returned is ... ")
+            console.log(error)
+        })
     }
 
     const goToPreferences = (event: React.FormEvent<HTMLFormElement>) => {
@@ -718,7 +727,7 @@ const AddMemberModals: React.FC<Props> = ({selectedMemberDetails, handlePaymentU
                             </Form.Select>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>What is this medical condition?</Form.Label>
+                            <Form.Label>IF YOU ANSWERED YES TO THE ABOVE QUESTION, PLEASE EXPLAIN</Form.Label>
                             {
                                 otherMedicalConditions == true ?
                                 <Form.Control as="textarea" name="medical_condition" value={medicalConditionDescription} rows={2} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} />
@@ -753,10 +762,19 @@ const AddMemberModals: React.FC<Props> = ({selectedMemberDetails, handlePaymentU
                     modeOfPayment == 'cash' ?
                     <>
                     <Form.Group className="my-3" >
+                        <Form.Label>Payment For</Form.Label>
                         <Form.Select aria-label="Default select example" name="receiver" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)}>
                             <option value={savedUser.id ? savedUser.id : receiver}>{savedUser.first_name ? savedUser.first_name : selectedMemberDetails.first_name} {savedUser.last_name ? savedUser.last_name : selectedMemberDetails.last_name}</option>
                         </Form.Select>
                     </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Payment by</Form.Label>
+                            <Form.Control value={sender} type="text" placeholder="Sender" name="sender" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>inputChange(e)} />
+                            {/* <Form.Text className="text-muted">
+                                We will never share your email with anyone else.
+                            </Form.Text> */}
+                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                        </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Duration</Form.Label>
                             <Form.Select aria-label="Default select example" name="duration" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)} required>
@@ -835,7 +853,7 @@ const AddMemberModals: React.FC<Props> = ({selectedMemberDetails, handlePaymentU
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Paid by</Form.Label>
                             <Form.Select aria-label="Default select example" name="receiver" onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>selectInputChange(e)}>
-                                <option value={savedUser.id ? savedUser.id : receiver}>{selectedMemberDetails.first_name} {selectedMemberDetails.last_name}</option>
+                                <option value={savedUser.id ? savedUser.id : receiver}>{savedUser.first_name ? savedUser.first_name : selectedMemberDetails.first_name} {savedUser.last_name ? savedUser.last_name : selectedMemberDetails.last_name}</option>
                             </Form.Select>
                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                         </Form.Group>

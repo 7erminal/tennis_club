@@ -22,7 +22,7 @@ const ViewMemberBody: React.FC<Props> = ({getMember, registrationDetails_, confi
         setAllowEdit(!allowEdit)
     }
     
-    const image_source = 'http://13.39.18.233:8000/media/'+selectedMemberDetails.picture
+    const image_source = 'http://13.38.229.1:8000/media/'+selectedMemberDetails.picture
     console.log("Image source is")
     console.log(image_source)
     return (
@@ -60,6 +60,7 @@ const ViewMemberBody: React.FC<Props> = ({getMember, registrationDetails_, confi
                         <ListGroup>
                             <ListGroup.Item><b>Mobile Number: </b>{selectedMemberDetails.mobile_number}</ListGroup.Item>
                             <ListGroup.Item><b>Email: </b>{selectedMemberDetails.email}</ListGroup.Item>
+                            <ListGroup.Item><b>Address: </b>{selectedMemberDetails.address}</ListGroup.Item>
                             <ListGroup.Item><b>Emergency Contact Name: </b>{selectedMemberDetails.emergency_contact_name}</ListGroup.Item>
                             <ListGroup.Item><b>Emergency Contact Number: </b>{selectedMemberDetails.emergency_contact_number}</ListGroup.Item>
                             <ListGroup.Item><b>Emergency Contact Address: </b>{selectedMemberDetails.emergency_contact_address}</ListGroup.Item>
@@ -76,12 +77,13 @@ const ViewMemberBody: React.FC<Props> = ({getMember, registrationDetails_, confi
                         <hr/>
                         <h6>Medical History</h6>
                         <ListGroup>
-                            <ListGroup.Item><b>Heart Problem: </b>{selectedMemberDetails.heart_problem == null ? 'No' : selectedMemberDetails.heart_problem == 'False' ? 'No' : 'Yes'}</ListGroup.Item>
-                            <ListGroup.Item><b>Respiratory Problem: </b>{selectedMemberDetails.respiratory_problem == null ? 'No' : selectedMemberDetails.respiratory_problem == 'False' ? 'No' : 'Yes'}</ListGroup.Item>
-                            <ListGroup.Item><b>Family history of short breath: </b>{selectedMemberDetails.heart_problem_in_family_hist == null ? 'No' : selectedMemberDetails.heart_problem_in_family_hist == 'False' ? 'No' : 'Yes'}</ListGroup.Item>
-                            <ListGroup.Item><b>Advised not to do any strenous exercise: </b>{selectedMemberDetails.strenous_exercise_advice == null ? 'No' : selectedMemberDetails.strenous_exercise_advice == 'False' ? 'No' : 'Yes'}</ListGroup.Item>
-                            <ListGroup.Item><b>Bone or joint injury: </b>{selectedMemberDetails.bone_or_joint_injury == null ? 'No' : selectedMemberDetails.bone_or_joint_injury == 'False' ? 'No' : 'Yes'}</ListGroup.Item>
-                            <ListGroup.Item><b>Any medical condition that can hinder playing tennis: </b>{selectedMemberDetails.tennis_preventing_injury == null ? 'No' : selectedMemberDetails.tennis_preventing_injury == 'False' ? 'No' : 'Yes'}</ListGroup.Item>
+                            <ListGroup.Item><b>Heart Problem: </b>{selectedMemberDetails.heart_problem == null || selectedMemberDetails.heart_problem == 'False' || selectedMemberDetails.heart_problem == false ? 'No' : 'Yes'}</ListGroup.Item>
+                            <ListGroup.Item><b>Family history of heart problem: </b>{selectedMemberDetails.heart_problem_in_family_hist == null || selectedMemberDetails.heart_problem_in_family_hist == 'False' || selectedMemberDetails.heart_problem_in_family_hist == false ? 'No' : 'Yes'}</ListGroup.Item>
+                            <ListGroup.Item><b>Respiratory Problem: </b>{selectedMemberDetails.respiratory_problem == null || selectedMemberDetails.respiratory_problem == 'False' || selectedMemberDetails.respiratory_problem == false ? 'No' : 'Yes'}</ListGroup.Item>
+                            <ListGroup.Item><b>Family history of short breath: </b>{selectedMemberDetails.respiratory_problem_in_family_hist == null || selectedMemberDetails.respiratory_problem_in_family_hist == 'False' || selectedMemberDetails.respiratory_problem_in_family_hist == false ? 'No' : 'Yes'}</ListGroup.Item>
+                            <ListGroup.Item><b>Advised not to do any strenous exercise: </b>{selectedMemberDetails.strenous_exercise_advice == null || selectedMemberDetails.strenous_exercise_advice == 'False' || selectedMemberDetails.strenous_exercise_advice == false ? 'No' : 'Yes'}</ListGroup.Item>
+                            <ListGroup.Item><b>Bone or joint injury: </b>{selectedMemberDetails.bone_or_joint_injury == null || selectedMemberDetails.bone_or_joint_injury == 'False' || selectedMemberDetails.bone_or_joint_injury == false ? 'No' : 'Yes'}</ListGroup.Item>
+                            <ListGroup.Item><b>Any medical condition that can hinder playing tennis: </b>{selectedMemberDetails.tennis_preventing_injury == null || selectedMemberDetails.tennis_preventing_injury == 'False' || selectedMemberDetails.tennis_preventing_injury == false ? 'No' : 'Yes'}</ListGroup.Item>
                         </ListGroup>
                         <hr/>
                         <h6>Payment Details</h6>
@@ -93,7 +95,7 @@ const ViewMemberBody: React.FC<Props> = ({getMember, registrationDetails_, confi
                         </ListGroup>
                     </Col>
                 </Row>
-                <a className="btn btn-danger btn-sm my-4" href={`http://13.39.18.233:8000/print_as_pdf/${selectedMemberDetails.id}/`} >Print</a>
+                <a className="btn btn-danger btn-sm my-4" href={`http://13.38.229.1:8000/print_as_pdf/${selectedMemberDetails.id}/`} >Print</a>
             </Container>
             }
         </div>
