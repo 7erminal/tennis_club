@@ -367,7 +367,7 @@ const EditMemberBody: React.FC<Props> = ({toggleAllowEdit, configs_, registratio
                 <Col xs={12} sm={12} md={8} lg={7}>
                     <Form onSubmit={submitForm}>
                         <Row style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'right', flexDirection: 'column', textAlign: 'right' }}>
-                            <span><Button className="btn btn-secondary" onClick={toggleAllowEdit}>Save</Button></span>
+                            <span><Button className="btn btn-secondary" type="submit">Save</Button></span>
                         </Row>
                         <Form.Group controlId="formFileSm" className="mb-3">
                             <Form.Label>Change picture</Form.Label>

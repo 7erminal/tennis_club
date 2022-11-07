@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
@@ -8,7 +9,11 @@ import Form from 'react-bootstrap/Form';
 import { Link, useNavigate } from "react-router-dom"
 import Api from './../resources/api'
 
-const LoginPage: React.FC = () => {
+type Props = {
+    setLoggedInUser_: (username_: string)=>void
+}
+
+const LoginPage: React.FC<Props> = ({setLoggedInUser_}) => {
     const navigate = useNavigate();
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -16,6 +21,20 @@ const LoginPage: React.FC = () => {
     const [error_, setError_] = useState('')
     const [showError_, setShowError_] = useState(false)
 
+    const [showForgotPassword, setShowForgotPassword] = useState(false);
+    const [showEnterCode, setShowEnterCode] = useState(false)
+    const [showSetNewPassword, setShowSetNewPassword] = useState(false)
+
+    const handleForgotPasswordClose = () => setShowForgotPassword(false);
+    const handleForgotPasswordShow = () => setShowForgotPassword(true);
+
+    const handleEnterCodeClose = () => setShowEnterCode(false);
+    const handleEnterCodeShow = () => setShowEnterCode(true);
+
+    const handleSetNewPasswordClose = () => setShowSetNewPassword(false);
+    const handleSetNewPasswordShow = () => setShowSetNewPassword(true);
+
+    
     const users = [['super-admin','admin']]
 
     const login_ = () => {
@@ -38,6 +57,7 @@ const LoginPage: React.FC = () => {
 
             if(response.status == 202){
                console.log("Successful login")
+               setLoggedInUser_(username)
                navigate('/dashboard')
             }
 
@@ -85,7 +105,7 @@ const LoginPage: React.FC = () => {
                         </Form.Group>
 
                         <Row style={{paddingTop: '5px', paddingBottom: '5px'}}>
-                            <small>Forgot password?</small>
+                            <small><Button variant="link" onClick={handleForgotPasswordShow}>Forgot password?</Button></small>
                         </Row>
                         {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
                             <Form.Check type="checkbox" label="Check me out" />
@@ -106,6 +126,79 @@ const LoginPage: React.FC = () => {
             </div>
             <div className='loginImageDiv'>
             </div>
+
+            <Modal show={showForgotPassword} onHide={handleForgotPasswordClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Forgot password?</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Please enter your email address. We would send you a code which you can use to reset your password.</Form.Label>
+                            <Form.Control type="email" placeholder="Enter email" />
+                            <Form.Text className="text-muted">
+                            We will never share your email with anyone else.
+                            </Form.Text>
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleForgotPasswordClose}>
+                    Close
+                </Button>
+                <Button variant="primary" onClick={handleForgotPasswordClose}>
+                    Send Code
+                </Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={showEnterCode} onHide={handleEnterCodeClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Forgot password?</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Please enter the code that was sent to your email address.</Form.Label>
+                            <Form.Control type="text" placeholder="Enter code" />
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleEnterCodeClose}>
+                    Close
+                </Button>
+                <Button variant="primary" onClick={handleEnterCodeClose}>
+                    Send Code
+                </Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={showSetNewPassword} onHide={handleSetNewPasswordClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Set your new password</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Enter your new password</Form.Label>
+                            <Form.Control type="password" placeholder="Enter password" />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Repeat password</Form.Label>
+                            <Form.Control type="password" placeholder="Enter password again" />
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleSetNewPasswordClose}>
+                    Close
+                </Button>
+                <Button variant="primary" onClick={handleSetNewPasswordClose}>
+                    Send Code
+                </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     )
 }

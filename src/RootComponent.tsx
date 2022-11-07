@@ -49,6 +49,8 @@ const RootComponent: React.FC = () => {
     const [selectedCoachingDetails, setSelectedCoachingDetails] = useState<Array<any>>([])
     const [selectedTrainingDetails, setSelectedTrainingDetails] = useState<Array<any>>([])
     
+    const [loggedInUser, setLoggedInUser] = useState('')
+
     const [activeNav, setActiveNav] = useState("dashboard")
     
     const [essentials, setEssentials] = useState<any>()
@@ -77,11 +79,12 @@ const RootComponent: React.FC = () => {
             e_games: games,
             e_scheduledCoaching: scheduledCoaching,
             e_scheduledTraining: scheduledTraining,
-            e_activeNav: activeNav
+            e_activeNav: activeNav,
+            e_loggedInUser: loggedInUser
         }
 
         setEssentials(essential_)
-    },[activeNav])
+    },[activeNav, loggedInUser])
 
     useEffect(()=>{
         new Api().getRegistrationDetails()
@@ -189,6 +192,10 @@ const RootComponent: React.FC = () => {
                     );
     }
 
+    const setLoggedInUser_ = (username: string):void => {
+        setLoggedInUser(username)
+    }
+
     const regDetails = ():void => {
         setGetRegDetails(!getRegDetails)
     }
@@ -274,7 +281,7 @@ const RootComponent: React.FC = () => {
         <Router>
             <Routes>
                 <Route path="*" element={<NotFoundPage />} />
-                <Route path={ROUTES.HOMEPAGE_ROUTE} element={<LoginPage />} />
+                <Route path={ROUTES.HOMEPAGE_ROUTE} element={<LoginPage setLoggedInUser_={setLoggedInUser_} />} />
                 <Route path={ROUTES.DASHBOARDPAGE_ROUTE} element={<DashboardPage essentials={essentials} getMember={getMember_} viewDetails={viewDetails_} changeSomething={changeSomething} regDetails={regDetails} games={games} members={members} configs_={configs} scheduledCoaching={scheduledCoaching} scheduledTraining={scheduledTraining} />} />
                 <Route path={ROUTES.SETTINGSPAGE_ROUTE} element={<SettingsPage essentials={essentials} getUser={getUser_} getMember={getMember_} users={users} changeSomething={changeSomething} regDetails={regDetails} configs_={configs} />} />
                 <Route path={ROUTES.MEMBERS_ROUTE} element={<MembersPage selectedMemberDetails={selectedMemberDetails} essentials={essentials} getUser={getUser_} getMember={getMember_} changeSomething={changeSomething} regDetails={regDetails} members={members} registrationDetails_={registrationDetails} configs_={configs} />} />

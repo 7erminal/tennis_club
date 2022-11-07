@@ -56,7 +56,7 @@ const Sidebar: React.FC<Props> = ({essentials, changeSomething}) => {
           </div>
         </a>
         <a href="#" className="simple-text logo-normal">
-          Super Admin
+          {essentials.e_loggedInUser}
         </a>
       </div>
       <div className="sidebar-wrapper">

@@ -113,3 +113,29 @@ body, #root{
     height: 100%;
 }
 
+.who-won-box{
+    width: 95%;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    height: 200px;
+    color: black;
+    border-radius: 5px;
+}
+
+.who-won-box:hover{
+    background-color:  #58d68d;
+    cursor: pointer;
+    color: whitesmoke;
+}
+
+.who-won-box-active{
+    width: 95%;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    height: 200px;
+    border-radius: 5px;
+    background-color: #28b463;
+    color: whitesmoke;
+    cursor: pointer;
+}
+

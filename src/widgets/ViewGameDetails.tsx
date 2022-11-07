@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
@@ -20,6 +20,17 @@ type Props = {
   }
 
 const ViewGameDetails: React.FC<Props> = ({getMember, selectedGameDetails, viewDetails, changeSomething, regDetails, configs_}) => {
+    const [winnerBox, setWinnerBox] = useState('none')
+
+    const setWinner = (whoWon: string) => {
+        if(winnerBox != 'none' && whoWon == winnerBox){
+            setWinnerBox('none')
+        } else {
+            setWinnerBox(whoWon)
+        }
+        
+    }
+
     return (
         <div className="main-panel">
             <Navbar_ getMember={getMember} regDetails={regDetails} />
@@ -60,12 +71,34 @@ const ViewGameDetails: React.FC<Props> = ({getMember, selectedGameDetails, viewD
                 <hr/>
                 <Row style={{paddingTop: '15px'}}>
                     <Col>
-                        <b>Status: </b>{selectedGameDetails.played == 'False' ? 'Not Played' : 'Played'}
+                        <b>Status: </b>{selectedGameDetails.played == 'False' ? 'Not Played' : 'Played'} <Button variant="warning" size="sm">Update status</Button>
                     </Col>
                 </Row>
                 <Row style={{paddingTop: '8px'}}>
                     <Col>
                         <b>Start time: </b>{moment(selectedGameDetails.start_time).format("YYYY-MM-DD HH:mm:ss")}
+                    </Col>
+                </Row>
+                <hr/>
+                <Row style={{display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center'}}>
+                    <h4>Who Won?</h4>
+                    <Col xs={12} sm={12} md={5} className="my-4">
+                        <div className={winnerBox == 'box1' ? 'who-won-box-active' : "who-won-box" } onClick={()=>setWinner('box1')}>
+                            <div className='centerDiv'>
+                                <h5>
+                                    {selectedGameDetails.opponent_1_first_name} {selectedGameDetails.opponent_1_last_name}
+                                </h5>
+                            </div>
+                        </div>
+                    </Col>
+                    <Col xs={12} sm={12} md={5} className="my-4">
+                        <div className={winnerBox == 'box2' ? 'who-won-box-active' : "who-won-box" } onClick={()=>setWinner('box2')}>
+                            <div className='centerDiv'>
+                                <h5>
+                                    {selectedGameDetails.opponent_2_first_name} {selectedGameDetails.opponent_2_last_name}
+                                </h5>
+                            </div>
+                        </div>
                     </Col>
                 </Row>
             </Container>

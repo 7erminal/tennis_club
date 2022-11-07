@@ -346,6 +346,28 @@ class Api {
 		return await res
 	}
 
+	// update game
+	async update_game(params){
+		console.log("what is being sent")
+		console.log(params)
+
+		const config = {
+			method: 'post',
+			url: 'http://13.38.229.1:8000/api/update-game/',
+			data: params,
+			// headers: {
+			// 	'X-CSRFTOKEN': cookie.load("csrftoken"),
+			// 	"Access-Control-Allow-Origin":"*",
+			// 	"accept": 'application/json',
+			// 	"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+			// }
+		}
+
+		const res = await axios(config)
+
+		return await res
+	}
+
 	// add coaching schedule
 	async schedule_coach(params){
 		console.log("what is being sent")
