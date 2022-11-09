@@ -22,7 +22,7 @@ const ViewMemberBody: React.FC<Props> = ({getMember, registrationDetails_, confi
         setAllowEdit(!allowEdit)
     }
     
-    const image_source = 'http://13.38.229.1:8000/media/'+selectedMemberDetails.picture
+    const image_source = 'http://13.39.24.195:8000/media/'+selectedMemberDetails.picture
     console.log("Image source is")
     console.log(image_source)
     return (
@@ -97,7 +97,7 @@ const ViewMemberBody: React.FC<Props> = ({getMember, registrationDetails_, confi
                                 </ListGroup>
                             </Col>
                         </Row>
-                        <a className="btn btn-danger btn-sm my-4" href={`http://13.38.229.1:8000/print_as_pdf/${selectedMemberDetails.id}/`} >Print</a>
+                        <a className="btn btn-danger btn-sm my-4" href={`http://13.39.24.195:8000/print_as_pdf/${selectedMemberDetails.id}/`} >Print</a>
                     </Col>
                 </Row>
             </Container>
