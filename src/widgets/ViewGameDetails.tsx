@@ -9,6 +9,7 @@ import { Link } from "react-router-dom"
 import Navbar_ from './NavBar';
 import ListGroup from 'react-bootstrap/ListGroup';
 import moment from 'moment'
+import Api from '../resources/api'
 
 type Props = {
     regDetails: ()=>void
@@ -21,14 +22,39 @@ type Props = {
 
 const ViewGameDetails: React.FC<Props> = ({getMember, selectedGameDetails, viewDetails, changeSomething, regDetails, configs_}) => {
     const [winnerBox, setWinnerBox] = useState('none')
+    const [updateDone, setUpdateDone] = useState(false)
+    const [winner_, setWinner_] = useState('')
+    const [score, setScore] = useState('')
 
-    const setWinner = (whoWon: string) => {
+    const setWinner = (whoWon: string, winner: string) => {
         if(winnerBox != 'none' && whoWon == winnerBox){
             setWinnerBox('none')
+            setWinner_('')
+            setUpdateDone(false)
         } else {
             setWinnerBox(whoWon)
+            setUpdateDone(true)
+            setWinner_(winner)
         }
-        
+    }
+
+    const submitUpdate = (winner: string) => {
+        const params = {
+            game_tag: selectedGameDetails.game_tag,
+            score: score,
+            who_won: winner_,
+            update_type: 'winner'
+        }
+
+        new Api().update_game(params).then(response=>{
+            if(response.status==202){
+                setUpdateDone(false)
+                console.log("Game updated successfully")
+            }
+        }).catch(error => {
+            console.log("Error returned is ")
+            console.log(error)
+        })
     }
 
     return (
@@ -83,7 +109,7 @@ const ViewGameDetails: React.FC<Props> = ({getMember, selectedGameDetails, viewD
                 <Row style={{display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center'}}>
                     <h4>Who Won?</h4>
                     <Col xs={12} sm={12} md={5} className="my-4">
-                        <div className={winnerBox == 'box1' ? 'who-won-box-active' : "who-won-box" } onClick={()=>setWinner('box1')}>
+                        <div className={winnerBox == 'box1' ? 'who-won-box-active' : "who-won-box" } onClick={()=>setWinner('box1', selectedGameDetails.opponent_1_member_number)}>
                             <div className='centerDiv'>
                                 <h5>
                                     {selectedGameDetails.opponent_1_first_name} {selectedGameDetails.opponent_1_last_name}
@@ -92,13 +118,18 @@ const ViewGameDetails: React.FC<Props> = ({getMember, selectedGameDetails, viewD
                         </div>
                     </Col>
                     <Col xs={12} sm={12} md={5} className="my-4">
-                        <div className={winnerBox == 'box2' ? 'who-won-box-active' : "who-won-box" } onClick={()=>setWinner('box2')}>
+                        <div className={winnerBox == 'box2' ? 'who-won-box-active' : "who-won-box" } onClick={()=>setWinner('box2', selectedGameDetails.opponent_2_member_number)}>
                             <div className='centerDiv'>
                                 <h5>
                                     {selectedGameDetails.opponent_2_first_name} {selectedGameDetails.opponent_2_last_name}
                                 </h5>
                             </div>
                         </div>
+                    </Col>
+                </Row>
+                <Row className="mt-4">
+                    <Col>
+                    {updateDone == true ? <Button variant="primary" type="button" onClick={()=>submitUpdate(winner_)}>Update game</Button> : ''}
                     </Col>
                 </Row>
             </Container>

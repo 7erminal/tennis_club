@@ -30,7 +30,7 @@ const ViewMemberBody: React.FC<Props> = ({getMember, registrationDetails_, confi
             <Navbar_ getMember={getMember} regDetails={regDetails}/>
             {
                 allowEdit == true ?
-                <EditMemberBody toggleAllowEdit={toggleAllowEdit} configs_={configs_} registrationDetails_={registrationDetails_} selectedMemberDetails={selectedMemberDetails} regDetails={regDetails} changeSomething={changeSomething} />
+                <EditMemberBody getMember={getMember} toggleAllowEdit={toggleAllowEdit} configs_={configs_} registrationDetails_={registrationDetails_} selectedMemberDetails={selectedMemberDetails} regDetails={regDetails} changeSomething={changeSomething} />
                 :
             <Container className="view-member-body">
                 <Row style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>

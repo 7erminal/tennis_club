@@ -14,9 +14,10 @@ type Props = {
     registrationDetails_: any
     configs_: any
     toggleAllowEdit: ()=>void
+    getMember: (memberid: string)=>void
   }
 
-const EditMemberBody: React.FC<Props> = ({toggleAllowEdit, configs_, registrationDetails_, regDetails, selectedMemberDetails, changeSomething}) => {
+const EditMemberBody: React.FC<Props> = ({getMember, toggleAllowEdit, configs_, registrationDetails_, regDetails, selectedMemberDetails, changeSomething}) => {
     const [memberid, setMemberid] = useState('')
     const [surname, setSurname] = useState('')
     const [firstname, setFirstname] = useState('')
@@ -298,6 +299,7 @@ const EditMemberBody: React.FC<Props> = ({toggleAllowEdit, configs_, registratio
                 setOtherMedicalConditions(false)
 
                 changeSomething('members')
+                getMember(memberid)
 
                 toggleAllowEdit()
             }
@@ -374,7 +376,7 @@ const EditMemberBody: React.FC<Props> = ({toggleAllowEdit, configs_, registratio
                             <input type="file" name="picture" onChange={onChangePicture} />
                         </Form.Group>
                         <div className="previewProfilePic">
-                            <img className="playerProfilePic_home_tile" src={imgData != null ? imgData : "http://13.38.229.1:8000/media/"+picture} />
+                            <img className="playerProfilePic_home_tile" src={imgData != null ? imgData : "http://13.39.24.195:8000/media/"+picture} />
                         </div>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Surname</Form.Label>
