@@ -376,7 +376,7 @@ const EditMemberBody: React.FC<Props> = ({getMember, toggleAllowEdit, configs_, 
                             <input type="file" name="picture" onChange={onChangePicture} />
                         </Form.Group>
                         <div className="previewProfilePic">
-                            <img className="playerProfilePic_home_tile" src={imgData != null ? imgData : "http://13.39.24.195:8000/media/"+picture} />
+                            <img className="playerProfilePic_home_tile" src={imgData != null ? imgData : "http://35.180.135.175:8000/media/"+picture} />
                         </div>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Surname</Form.Label>
